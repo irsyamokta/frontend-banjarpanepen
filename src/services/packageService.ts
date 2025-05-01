@@ -1,29 +1,34 @@
 import api from "../api";
-import { IArticlePayload } from "../types";
 
-export const getArticles = async () => {
-    const response = await api.get("/article/all-article", {
+export const getPackages = async () => {
+    const response = await api.get("/package/all-package", {
         withCredentials: true,
     });
     return response.data;
 };
 
-export const createArticle = async (payload: IArticlePayload) => {
-    const response = await api.post("/article/create-article", payload, {
+export const createPackage = async (payload: any) => {
+    const response = await api.post("/package/create-package", payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
     });
     return response.data;
 };
 
-export const updateArticle = async (id: string, payload: IArticlePayload) => {
-    const response = await api.put(`/article/update-article/${id}`, payload, {
+export const updatePackage = async (id: string, payload: any) => {
+    const response = await api.put(`/package/update-package/${id}`, payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
     });
     return response.data;
 };
 
-export const deleteArticle = async (id: string) => {
-    const response = await api.delete(`/article/delete-article/${id}`, {
+export const deletePackage = async (id: string) => {
+    const response = await api.delete(`/package/delete-package/${id}`, {
         withCredentials: true,
     });
     return response.data;
