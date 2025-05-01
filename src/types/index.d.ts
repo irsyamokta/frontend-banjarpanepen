@@ -26,6 +26,7 @@ export interface IAuthContextType {
 }
 
 export interface IArticlePayload {
+    id: string;
     title: string;
     content: string;
     writer: string;
@@ -33,23 +34,26 @@ export interface IArticlePayload {
 }
 
 export interface IEventPayload {
+    id: string;
     title: string;
     description: string;
     date: string;
     time: string;
     place: string;
-    price: string;
+    price: number;
     thumbnail: string;
 }
 
 export interface IPackagePayload {
+    id: string;
     title: string;
-    price: string;
+    price: number;
     benefit: string;
     thumbnail: string;
 }
 
 export interface IGalleryPayload {
+    id: string;
     title: string;
     caption: string;
     image: string;
