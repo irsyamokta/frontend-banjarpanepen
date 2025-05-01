@@ -1,4 +1,4 @@
-import { LuUserCheck, LuUsers, LuLayoutDashboard, LuNewspaper, LuTableOfContents } from "react-icons/lu";
+import { LuLayoutDashboard, LuMapPinned, LuNewspaper, LuTickets, LuCalendarDays, LuImage  } from "react-icons/lu";
 
 export const adminNavItems = [
     {
@@ -7,23 +7,28 @@ export const adminNavItems = [
         path: "/admin/dashboard",
     },
     {
-        icon: <LuUsers />,
-        name: "Users",
+        icon: <LuMapPinned />,
+        name: "Objek Wisata",
         path: "/admin/users",
     },
     {
-        icon: <LuUserCheck />,
-        name: "Requested Role",
-        path: "/admin/requested-role",
+        icon: <LuTickets />,
+        name: "Paket Wisata",
+        path: "/admin/paket-wisata",
     },
     {
         icon: <LuNewspaper />,
-        name: "News",
-        path: "/admin/news",
+        name: "Artikel",
+        path: "/admin/requested-role",
     },
     {
-        icon: <LuTableOfContents />,
-        name: "Category",
+        icon: <LuCalendarDays />,
+        name: "Agenda Desa",
+        path: "/admin/agenda-desa",
+    },
+    {
+        icon: <LuImage />,
+        name: "Galeri",
         path: "/admin/category",
     },
 ];
