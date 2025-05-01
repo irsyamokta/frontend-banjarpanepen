@@ -5,6 +5,7 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import 'react-toastify/dist/ReactToastify.css';
 
 import AdminLayout from "./layout/AdminLayout";
+import ClientLayout from "./layout/ClientLayout";
 
 import GuestRoute from "./routes/GuestRoutes";
 import PrivateRoute from "./routes/PrivateRoutes";
@@ -15,26 +16,36 @@ import SignIn from "./pages/Auth/SignIn";
 import Home from "./pages/Admin/Home";
 import NotFound from "./pages/Errors/NotFound";
 
+import ClientHome from "./pages/Client/Home";
+
 function App() {
   return (
     <>
       <AuthProvider>
         <Router>
-          <ToastContainer style={{ zIndex: 9999 }} position="top-center" autoClose={3000} />
+          <ToastContainer
+            style={{ zIndex: 9999 }}
+            position="top-center"
+            autoClose={3000}
+          />
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
-
+            <Route path="/" element={<ClientLayout />}>
+              <Route index path="dashboard" element={<ClientHome />} />
+            </Route>
 
             {/* Route Admin */}
-            <Route path="/admin" element={
-              <PrivateRoute>
-                <AdminRoute>
-                  <AdminLayout />
-                </AdminRoute>
-              </PrivateRoute>
-            }>
-
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <AdminLayout />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            >
               <Route index path="dashboard" element={<Home />} />
             </Route>
 
