@@ -32,7 +32,7 @@ function App() {
           <Routes>
             {/* Route Public */}
             <Route path="/" element={<ClientLayout />}>
-              <Route index path="dashboard" element={<ClientHome />} />
+              <Route index element={<ClientHome />} />
             </Route>
 
             {/* Route Admin */}
