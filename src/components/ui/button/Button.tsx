@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
     default: "bg-primary text-white hover:bg-primary/90",
     outline: "border border-primary text-primary bg-white hover:bg-primary/10",
     popover: "border text-primary bg-white hover:bg-primary/10 shadow-xs",
-    danger: "bg-secondary text-white hover:bg-secondary/90",
+    danger: "bg-error-600 text-white hover:bg-secondary/90",
     alternate: "bg-secondary text-white hover:bg-secondary/90",
     primary: "bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300",
   };

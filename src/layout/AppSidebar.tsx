@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-import { LuChevronDown, LuAlignJustify } from "react-icons/lu";
+import { LuChevronDown } from "react-icons/lu";
+import { HiDotsHorizontal } from "react-icons/hi";
 import { useSidebar } from "../context/SidebarContext";
 
 type NavItem = {
@@ -94,8 +95,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
               className={`menu-item group ${openSubmenu?.type === menuType && openSubmenu?.index === index
-                  ? "menu-item-active"
-                  : "menu-item-inactive"
+                ? "menu-item-active"
+                : "menu-item-inactive"
                 } cursor-pointer ${!isExpanded && !isHovered
                   ? "lg:justify-center"
                   : "lg:justify-start"
@@ -103,8 +104,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
             >
               <span
                 className={`menu-item-icon-size  ${openSubmenu?.type === menuType && openSubmenu?.index === index
-                    ? "menu-item-icon-active"
-                    : "menu-item-icon-inactive"
+                  ? "menu-item-icon-active"
+                  : "menu-item-icon-inactive"
                   }`}
               >
                 {nav.icon}
@@ -115,9 +116,9 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
               {(isExpanded || isHovered || isMobileOpen) && (
                 <LuChevronDown
                   className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType &&
-                      openSubmenu?.index === index
-                      ? "rotate-180 text-brand-500"
-                      : ""
+                    openSubmenu?.index === index
+                    ? "rotate-180 text-brand-500"
+                    : ""
                     }`}
                 />
               )}
@@ -131,8 +132,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
               >
                 <span
                   className={`menu-item-icon-size ${isActive(nav.path)
-                      ? "menu-item-icon-active"
-                      : "menu-item-icon-inactive"
+                    ? "menu-item-icon-active"
+                    : "menu-item-icon-inactive"
                     }`}
                 >
                   {nav.icon}
@@ -162,8 +163,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                     <Link
                       to={subItem.path}
                       className={`menu-dropdown-item ${isActive(subItem.path)
-                          ? "menu-dropdown-item-active"
-                          : "menu-dropdown-item-inactive"
+                        ? "menu-dropdown-item-active"
+                        : "menu-dropdown-item-inactive"
                         }`}
                     >
                       {subItem.name}
@@ -171,8 +172,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                         {subItem.new && (
                           <span
                             className={`ml-auto ${isActive(subItem.path)
-                                ? "menu-dropdown-badge-active"
-                                : "menu-dropdown-badge-inactive"
+                              ? "menu-dropdown-badge-active"
+                              : "menu-dropdown-badge-inactive"
                               } menu-dropdown-badge`}
                           >
                             new
@@ -181,8 +182,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                         {subItem.pro && (
                           <span
                             className={`ml-auto ${isActive(subItem.path)
-                                ? "menu-dropdown-badge-active"
-                                : "menu-dropdown-badge-inactive"
+                              ? "menu-dropdown-badge-active"
+                              : "menu-dropdown-badge-inactive"
                               } menu-dropdown-badge`}
                           >
                             pro
@@ -221,12 +222,13 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
         <Link to="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
-              <p className="text-2xl font-bold dark:hidden">Cakrapedia</p>
-              <p className="text-2xl font-bold text-white hidden dark:block">Cakrapedia</p>
+              <img src="/src/assets/logo/logo-color.png" alt="Logo" className="dark:hidden w-48" />
+              <img src="/src/assets/logo/logo-white.png" alt="Logo" className="hidden dark:block w-48" />
             </>
           ) : (
             <img
-              src="/images/logo/logo-icon.svg"
+              className="w-10"
+              src="/favicon.png"
               alt="Logo"
               width={32}
               height={32}
@@ -240,14 +242,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
             <div>
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
+                  ? "lg:justify-center"
+                  : "justify-start"
                   }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
                   "Menu"
                 ) : (
-                  <LuAlignJustify className="size-6" />
+                  <HiDotsHorizontal className="size-6" />
                 )}
               </h2>
               {renderMenuItems(navItems, "main")}
@@ -256,14 +258,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
               <div className="">
                 <h2
                   className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
-                      ? "lg:justify-center"
-                      : "justify-start"
+                    ? "lg:justify-center"
+                    : "justify-start"
                     }`}
                 >
                   {isExpanded || isHovered || isMobileOpen ? (
                     "Others"
                   ) : (
-                    <LuAlignJustify className="size-6" />
+                    <HiDotsHorizontal className="size-6" />
                   )}
                 </h2>
                 {renderMenuItems(othersItems, "others")}

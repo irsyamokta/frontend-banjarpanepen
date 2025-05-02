@@ -1,5 +1,4 @@
 import api from "../api";
-import { IEventPayload } from "../types";
 
 export const getEvents = async () => {
     const response = await api.get("/event/all-event", {
@@ -8,16 +7,22 @@ export const getEvents = async () => {
     return response.data;
 };
 
-export const createEvent = async (payload: IEventPayload) => {
+export const createEvent = async (payload: any) => {
     const response = await api.post("/event/create-event", payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        }
     });
     return response.data;
 };
 
-export const updateEvent = async (id: string, payload: IEventPayload) => {
+export const updateEvent = async (id: string, payload: any) => {
     const response = await api.put(`/event/update-event/${id}`, payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        }
     });
     return response.data;
 };

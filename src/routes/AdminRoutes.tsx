@@ -6,8 +6,6 @@ import { Spinner } from "../components/ui/spinner/Spinner";
 const AdminRoute = ({ children }: { children: ReactNode }) => {
     const { user, loading } = useAuth();
 
-    console.log(user);
-
     if (loading) return <Spinner />;
 
     if (!user) {
