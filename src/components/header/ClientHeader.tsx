@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router";
-import { HiOutlineMenu, HiOutlineX } from "react-icons/hi"; // Icons for burger menu
+import { useNavigate } from "react-router"; // Tambahkan useNavigate
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import logoColor from "../../assets/logo/logo-color.png";
+import logoWhite from "../../assets/logo/logo-white.png"; // Path to your logo
 
-// Navigation items configuration
 const NAV_ITEMS = [
-  { path: "/beranda", label: "Beranda" },
+  { path: "/", label: "Beranda" },
   { path: "/wisata", label: "Wisata" },
   { path: "/agenda", label: "Agenda" },
   { path: "/artikel", label: "Artikel" },
@@ -15,8 +15,8 @@ const NAV_ITEMS = [
 const ClientHeader: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate(); // Gunakan useNavigate untuk navigasi
 
-  // Handle scroll to toggle navbar styles
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
@@ -28,6 +28,30 @@ const ClientHeader: React.FC = () => {
     };
   }, []);
 
+  const handleNavigation = (path: string) => {
+    if (path === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Reset scroll
+    }
+    navigate(path);
+  };
+
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Reset scroll
+    navigate("/"); // Navigasi ke path "/"
+  };
+
+  const Logo: React.FC = () => (
+    <div className="flex items-center">
+      <button onClick={handleLogoClick} className="focus:outline-none">
+        <img
+          src={scrolled ? logoColor : logoWhite}
+          alt="Logo"
+          className="w-40 h-auto"
+        />
+      </button>
+    </div>
+  );
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-25 py-4 transition-all duration-200 ${
@@ -36,29 +60,22 @@ const ClientHeader: React.FC = () => {
           : "bg-transparent backdrop-opacity-100 backdrop-blur-sm backdrop-contrast-70 drop-shadow-5xl text-white"
       }`}
     >
-      {/* Logo */}
       <Logo />
 
-      {/* Mobile Menu Toggle Button */}
       <BurgerMenuButton
         isOpen={menuOpen}
         onClick={() => setMenuOpen(!menuOpen)}
         scrolled={scrolled}
       />
 
-      {/* Navigation Menu */}
-      <NavigationMenu isOpen={menuOpen} scrolled={scrolled} />
+      <NavigationMenu
+        isOpen={menuOpen}
+        scrolled={scrolled}
+        onNavigate={handleNavigation} // Tambahkan handler navigasi
+      />
     </nav>
   );
 };
-
-const Logo: React.FC = () => (
-  <div className="flex items-center">
-    <Link to="/dashboard">
-      <img src={logoColor} alt="Logo" className="w-40 h-auto" />
-    </Link>
-  </div>
-);
 
 interface BurgerMenuButtonProps {
   isOpen: boolean;
@@ -84,11 +101,13 @@ const BurgerMenuButton: React.FC<BurgerMenuButtonProps> = ({
 interface NavigationMenuProps {
   isOpen: boolean;
   scrolled: boolean;
+  onNavigate: (path: string) => void; // Tambahkan prop untuk navigasi
 }
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({
   isOpen,
   scrolled,
+  onNavigate,
 }) => (
   <ul
     className={`flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-lg font-medium transition-all duration-100 ${
@@ -97,14 +116,14 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
   >
     {NAV_ITEMS.map((item) => (
       <li key={item.path}>
-        <Link
-          to={item.path}
+        <button
+          onClick={() => onNavigate(item.path)} // Gunakan handler navigasi
           className={`transition-colors duration-200 ${
             scrolled ? "hover:text-black" : "hover:text-white"
           }`}
         >
           {item.label}
-        </Link>
+        </button>
       </li>
     ))}
   </ul>

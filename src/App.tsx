@@ -2,7 +2,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { ScrollToTop } from "./components/common/ScrollToTop";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import AdminLayout from "./layout/AdminLayout";
 import ClientLayout from "./layout/ClientLayout";
@@ -33,7 +33,6 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
-<<<<<<< HEAD
             <Route path="/" element={<ClientLayout />}>
               <Route index element={<ClientHome />} />
             </Route>
@@ -49,19 +48,6 @@ function App() {
                 </PrivateRoute>
               }
             >
-=======
-
-            {/* Route Admin */}
-            <Route path="/admin" element={
-              <PrivateRoute>
-                <AdminRoute>
-                  <AdminLayout />
-                </AdminRoute>
-              </PrivateRoute>
-            }>
-
-
->>>>>>> 61ccf1542b5ed8acdeb1d29521e7a2bb5c6ffeec
               <Route index path="dashboard" element={<Home />} />
               <Route path="paket-wisata" element={<TourPackage />} />
               <Route path="agenda-desa" element={<Event />} />
@@ -82,4 +68,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
 import React from "react";
 import { LuMail, LuPhone, LuInstagram } from "react-icons/lu";
 import logoColor from "../../assets/logo/logo-color.png"; // Path to your logo
-import galleryImage1 from "../../assets/image/img-galeri-1.png"; // Path to gallery images
-import galleryImage2 from "../../assets/image/img-galeri-2.png";
+import galleryImage1 from "../../assets/img/img-galeri-1.png"; // Path to gallery images
+import galleryImage2 from "../../assets/img/img-galeri-2.png";
 
 const CONTACT_INFO = [
   { icon: <LuMail className="text-xl" />, text: "email@gmail.com" },
