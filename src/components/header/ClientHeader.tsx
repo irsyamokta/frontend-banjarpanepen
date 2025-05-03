@@ -54,9 +54,9 @@ const ClientHeader: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-25 py-4 transition-all duration-200 ${
+      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 lg:px-25 py-4 transition-all duration-200 ${
         scrolled
-          ? "bg-white text-gray-800 shadow-md dark:bg-gray-800 dark:text-gray-300"
+          ? "bg-[#F8F9FA] text-gray-800 shadow-md dark:bg-gray-800 dark:text-gray-300"
           : "bg-transparent backdrop-opacity-100 backdrop-blur-sm backdrop-contrast-70 drop-shadow-5xl text-white"
       }`}
     >

@@ -1,7 +1,7 @@
 import React from "react";
 import { LuMail, LuPhone, LuInstagram } from "react-icons/lu";
-import logoColor from "../../assets/logo/logo-color.png"; // Path to your logo
-import galleryImage1 from "../../assets/img/img-galeri-1.png"; // Path to gallery images
+import logoColor from "../../assets/logo/logo-color.png";
+import galleryImage1 from "../../assets/img/img-galeri-1.png";
 import galleryImage2 from "../../assets/img/img-galeri-2.png";
 
 const CONTACT_INFO = [
@@ -18,8 +18,8 @@ const IMAGES = [galleryImage1, galleryImage2, galleryImage2, galleryImage1];
 
 const ClientFooter: React.FC = () => {
   return (
-    <footer className="bg-[#212529] text-[#ADB5BD] py-10 w-full">
-      <div className="w-full px-6 md:px-10 lg:px-25">
+    <footer className="bg-[#212529] text-[#ADB5BD] py-10 w-full mt-25">
+      <div className="w-full px-6 md:px-12 lg:px-25">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Logo />
           <Kontak />
@@ -62,11 +62,11 @@ const Galeri: React.FC = () => (
     <h4 className="text-lg md:text-xl text-gray-100 font-bold mb-4">Galeri</h4>
     <div className="grid grid-cols-2 gap-4">
       {IMAGES.map((image, index) => (
-        <div key={index} className="overflow-hidden rounded-xl">
+        <div key={index} className="overflow-hidden">
           <img
             src={image}
             alt={`Gallery Image ${index + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full object-cover aspect-5/4 rounded-xl"
           />
         </div>
       ))}

@@ -33,7 +33,7 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
-            <Route path="/" element={<ClientLayout />}>
+            <Route path="/h" element={<ClientLayout />}>
               <Route index element={<ClientHome />} />
             </Route>
 

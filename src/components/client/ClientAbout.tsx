@@ -3,22 +3,15 @@ import aboutImage from "../../assets/img/img-about.png";
 
 const ClientAbout: React.FC = () => {
   return (
-    <section className="px-25 py-25">
-      {/* Content Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-15">
-        {/* Title Section */}
-        <div className="space-y-4">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-[#212529]">
-            Mengenal Lebih Dekat
-          </h2>
-          <h3 className="text-2xl md:text-4xl font-extrabold text-[#087245]">
-            Desa Banjarpanepen
-          </h3>
+    <section className="px-6 md:px-12 lg:px-25 py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <div className="space-y-4 text-2xl md:text-5xl font-extrabold text-center lg:text-left">
+          <h2 className="break-words">Mengenal Lebih Dekat</h2>
+          <h2 className="text-[#087245] break-words">Desa Banjarpanepen</h2>
         </div>
 
-        {/* Description Section */}
-        <div className="md:col-span-2">
-          <p className="text-[#495057] text-base md:text-xl leading-relaxed text-justify">
+        <div className="lg:col-span-2 text-justify ">
+          <p className="text-[#495057] text-base md:text-lg lg:text-2xl leading-relaxed pl-0 lg:pl-20">
             Desa Banjarpanepen merupakan salah satu desa yang terletak di
             Kecamatan Sumpiuh, Kabupaten Banyumas, Jawa Tengah. Dikenal dengan
             keasrian alamnya dan kekayaan tradisi budaya yang masih terjaga,
@@ -29,12 +22,11 @@ const ClientAbout: React.FC = () => {
         </div>
       </div>
 
-      {/* Image Section */}
       <div className="mt-8">
         <img
           src={aboutImage}
           alt="Desa Banjarpanepen"
-          className="rounded-lg w-full shadow-lg"
+          className="rounded-2xl w-full shadow-lg"
         />
       </div>
     </section>
