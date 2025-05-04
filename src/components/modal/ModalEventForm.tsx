@@ -4,18 +4,22 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { Modal } from "../ui/modal";
+
 import { eventSchema } from "../../utils/validator/eventValidator";
 import { createEvent, updateEvent } from "../../services/eventService";
-import Input from "../form/input/InputField";
-import Label from "../form/Label";
-import Button from "../ui/button/Button";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { IEventPayload } from "../../types";
 import { formatDate } from "../../utils/dateFormatter";
+
+import { IEventPayload } from "../../types";
+
+import { Modal } from "../ui/modal";
+import Input from "../form/input/InputField";
+import TimePicker from "../form/time-picker";
 import TextArea from "../form/input/TextArea";
+import Label from "../form/Label";
 import DatePicker from "../form/date-picker";
-import { formatTimeInput } from "../../utils/timeInputFormatter";
+import Button from "../ui/button/Button";
+
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface ModalEventFormProps {
     mutateData: () => void;
@@ -100,10 +104,11 @@ export const ModalEventForm = ({
 
             if (initialData) {
                 await updateEvent(initialData.id, formData);
-                toast.success("Paket berhasil diperbarui!");
+                toast.success("Agenda berhasil diperbarui!");
             } else {
                 await createEvent(formData);
-                toast.success("Paket wisata berhasil ditambahkan!");
+                toast.success("Agenda berhasil ditambahkan!");
+                reset();
             }
 
             mutateData();
@@ -111,6 +116,7 @@ export const ModalEventForm = ({
             setImageFile(null);
         } catch (error) {
             if (error instanceof AxiosError) {
+                onClose();
                 toast.error(error.response?.data.message || "Gagal menyimpan data.");
             }
         } finally {
@@ -141,8 +147,8 @@ export const ModalEventForm = ({
 
                     <div>
                         <Label>Nama Agenda</Label>
-                        <Input {...register("title")} />
-                        {errors.title && <p className="text-sm text-red-500">{errors.title.message}</p>}
+                        <Input {...register("title")} placeholder="Masukkan nama agenda" />
+                        {errors.title && <p className="text-sm text-red-500 mt-2">{errors.title.message}</p>}
                     </div>
 
                     <div>
@@ -175,31 +181,38 @@ export const ModalEventForm = ({
                                 }
                             }}
                         />
-                        {errors.date && <p className="text-sm text-red-500">{errors.date.message}</p>}
+                        {errors.date && <p className="text-sm text-red-500 mt-2">{errors.date.message}</p>}
                     </div>
 
                     <div>
-                        <Label>Waktu</Label>
-                        <Input
-                            {...register("time")}
-                            onBlur={(e) => {
-                                const formatted = formatTimeInput(e.target.value);
-                                setValue("time", formatted);
-                            }}
+                        <Controller
+                            name="time"
+                            control={control}
+                            rules={{ required: "Waktu harus diisi" }}
+                            render={({ field }) => (
+                                <TimePicker
+                                    id="time"
+                                    label="Waktu"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    min="08:00"
+                                    max="17:00"
+                                />
+                            )}
                         />
-                        {errors.time && <p className="text-sm text-red-500">{errors.time.message}</p>}
+                        {errors.time && (<p className="text-sm text-red-500 mt-2">{errors.time.message}</p>)}
                     </div>
 
                     <div>
                         <Label>Tempat</Label>
-                        <Input {...register("place")} />
-                        {errors.place && <p className="text-sm text-red-500">{errors.place.message}</p>}
+                        <Input {...register("place")} placeholder="Masukkan tempat" />
+                        {errors.place && <p className="text-sm text-red-500 mt-2">{errors.place.message}</p>}
                     </div>
 
                     <div>
                         <Label>Harga Tiket</Label>
-                        <Input type="number" className="no-spinner" min={0} {...register("price", { valueAsNumber: true })} />
-                        {errors.price && <p className="text-sm text-red-500">{errors.price.message}</p>}
+                        <Input type="number" className="no-spinner" min={0} {...register("price", { valueAsNumber: true })} placeholder="Masukkan harga" />
+                        {errors.price && <p className="text-sm text-red-500 mt-2">{errors.price.message}</p>}
                     </div>
 
                     <div className="flex justify-end gap-3 mt-6">
@@ -219,4 +232,4 @@ export const ModalEventForm = ({
             </div>
         </Modal>
     );
-};
+}
