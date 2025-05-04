@@ -16,6 +16,10 @@ import Home from "./pages/Admin/Home";
 import TourPackage from "./pages/Admin/TourPackage";
 import Event from "./pages/Admin/Event";
 import NotFound from "./pages/Errors/NotFound";
+import UserProfiles from "./pages/Admin/UserProfiles";
+import Gallery from "./pages/Admin/Gallery";
+import Article from "./pages/Admin/Article";
+import Tour from "./pages/Admin/Tour";
 
 function App() {
   return (
@@ -37,9 +41,14 @@ function App() {
             }>
 
 
-              <Route index path="dashboard" element={<Home />} />
+              <Route index element={<Home />} />
+              <Route path="wisata" element={<Tour />} />
               <Route path="paket-wisata" element={<TourPackage />} />
+              <Route path="artikel" element={<Article />} />
               <Route path="agenda-desa" element={<Event />} />
+              <Route path="galeri" element={<Gallery />} />
+
+              <Route path="profile" element={<UserProfiles />} />
             </Route>
 
             {/* Route Guest */}
