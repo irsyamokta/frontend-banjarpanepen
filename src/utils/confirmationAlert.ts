@@ -31,4 +31,4 @@ export async function confirmDialog({
     });
 
     return result.isConfirmed;
-}
+};
