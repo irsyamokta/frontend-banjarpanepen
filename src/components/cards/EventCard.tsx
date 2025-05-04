@@ -1,23 +1,27 @@
-import useSWR from "swr";
-import { getEvents, deleteEvent } from "../../services/eventService";
-import { LuCalendar, LuClock, LuMapPin, LuPencil, LuTickets, LuTrash2 } from "react-icons/lu";
-import { IEventPayload } from "../../types";
-import { ModalEventForm } from "../modal/ModalEventForm";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import useSWR from "swr";
 import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+
+import { getEvents, deleteEvent } from "../../services/eventService";
 import { confirmDialog } from "../../utils/confirmationAlert";
-import Button from "../ui/button/Button";
-import HeaderSection from "../cards/HeaderSectionCard";
 import { formatCalendarDate } from "../../utils/dateFormatter";
+import { formatCurrency } from "../../utils/currencyFormatter";
 
-export default function TourPackageCard() {
-    const fetcher = async () => {
-        const data = await getEvents();
-        return data.data;
-    };
+import { IEventPayload } from "../../types";
 
-    const { data: response = [], mutate: mutateData } = useSWR("events", fetcher);
+import { ModalEventForm } from "../modal/ModalEventForm";
+import Button from "../ui/button/Button";
+import HeaderSection from "./HeaderSectionCard";
+import EmptyState from "../empty/EmptyState";
+import ImageFallback from "../ui/images/ImageFallback";
+
+import { LuCalendar, LuClock, LuMapPin, LuPencil, LuTickets, LuTrash2 } from "react-icons/lu";
+
+
+export default function EventCard() {
+
+    const { data: response = [], mutate: mutateData } = useSWR("events", getEvents, { suspense: true });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedData, setSelectedData] = useState<IEventPayload | null>(null);
 
@@ -35,15 +39,15 @@ export default function TourPackageCard() {
         const confirmed = await confirmDialog({
             title: "Hapus Agenda Desa",
             text: "Apakah Anda yakin ingin menghapus agenda desa ini?",
-            confirmButtonText: "Yes, Delete!",
-            cancelButtonText: "Cancel",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
         });
         if (!confirmed) return;
 
         try {
             await deleteEvent(id);
             mutateData();
-            toast.success("Paket wisata berhasil dihapus!");
+            toast.success("Agenda berhasil dihapus!");
         } catch (error) {
             if (error instanceof AxiosError) {
                 toast.error(error.response?.data.message);
@@ -70,18 +74,15 @@ export default function TourPackageCard() {
             />
 
             {/* Cards */}
+            {response.data.length === 0 && <EmptyState title="Belum ada agenda desa" />}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {response.map((item: IEventPayload) => (
+                {response.data.map((item: IEventPayload) => (
                     <div
                         key={item.id}
                         className="flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden"
                     >
                         <div className="w-full h-48 overflow-hidden">
-                            <img
-                                src={item.thumbnail || "/src/assets/img/761.png"}
-                                alt={item.title}
-                                className="w-full h-full object-cover"
-                            />
+                            <ImageFallback src={item.thumbnail} alt={item.title} />
                         </div>
                         <div className="p-6 flex flex-col flex-1 justify-between">
                             {/* Judul dan Deskripsi */}
@@ -107,7 +108,7 @@ export default function TourPackageCard() {
                                     </div>
                                     <div className="flex items-center gap-2 font-bold text-gray-700">
                                         <LuTickets className="w-4 h-4 shrink-0" />
-                                        <span>Rp. {item.price}</span>
+                                        <span>{item.price === 0 ? "Gratis" : formatCurrency(item.price)}</span>
                                     </div>
                                 </div>
                             </div>
