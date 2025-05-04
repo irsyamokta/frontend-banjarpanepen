@@ -289,6 +289,14 @@ body {
 	}
 }
 
+.custom-scroll::-webkit-scrollbar {
+	height: 0;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+	background-color: #d1d5db; 
+	border-radius: 4px;
+}
+
 .tableCheckbox:checked ~ span span {
 	@apply opacity-100;
 }
