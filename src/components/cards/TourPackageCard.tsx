@@ -1,22 +1,26 @@
-import useSWR from "swr";
-import { getPackages, deletePackage } from "../../services/packageService";
-import { LuPencil, LuTrash2 } from "react-icons/lu";
-import { IPackagePayload } from "../../types";
-import { ModalPackageForm } from "../modal/ModalPackageForm";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import useSWR from "swr";
 import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+
+import { getPackages, deletePackage } from "../../services/packageService";
 import { confirmDialog } from "../../utils/confirmationAlert";
+import { formatCurrency } from "../../utils/currencyFormatter";
+
+import { IPackagePayload } from "../../types";
+
+import { ModalPackageForm } from "../modal/ModalPackageForm";
 import Button from "../ui/button/Button";
 import HeaderSection from "../cards/HeaderSectionCard";
+import EmptyState from "../empty/EmptyState";
+import Badge from "../ui/badge/Badge";
+import ImageFallback from "../ui/images/ImageFallback";
+
+import { LuPencil, LuTrash2 } from "react-icons/lu";
 
 export default function TourPackageCard() {
-    const fetcher = async () => {
-        const data = await getPackages();
-        return data.data;
-    };
 
-    const { data: response = [], mutate: mutateData } = useSWR("packages", fetcher);
+    const { data: response = [], mutate: mutateData } = useSWR("packages", getPackages, { suspense: true });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedData, setSelectedData] = useState<IPackagePayload | null>(null);
 
@@ -34,11 +38,11 @@ export default function TourPackageCard() {
         const confirmed = await confirmDialog({
             title: "Hapus Paket Wisata",
             text: "Apakah Anda yakin ingin menghapus paket wisata ini?",
-            confirmButtonText: "Yes, Delete!",
-            cancelButtonText: "Cancel",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
         });
         if (!confirmed) return;
-        
+
         try {
             await deletePackage(id);
             mutateData();
@@ -69,32 +73,39 @@ export default function TourPackageCard() {
             />
 
             {/* Cards */}
+            {response.data.length === 0 && <EmptyState title="Belum ada paket wisata" />}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {response.map((item: IPackagePayload) => (
+                {response.data.map((item: IPackagePayload) => (
                     <div
                         key={item.id}
                         className="flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden"
                     >
                         <div className="w-full h-48 overflow-hidden">
-                            <img
-                                src={item.thumbnail || "/src/assets/img/761.png"}
-                                alt={item.title}
-                                className="w-full h-full object-cover"
-                            />
+                            <ImageFallback src={item.thumbnail} alt={item.title} />
                         </div>
                         <div className="p-6 flex flex-col flex-1 justify-between">
-                            <div>
+                            <div className="flex flex-col">
                                 <h1 className="text-lg font-bold text-gray-800">{item.title}</h1>
-                                <h2 className="text-sm text-gray-500 mt-1">Rp. {item.price}</h2>
-                                <p className="text-sm text-gray-500 mt-3 line-clamp-5">{item.benefit}</p>
+                                {/* Menampilkan benefit di bawah nama paket */}
+                                <p className="text-sm text-gray-500 mt-2">
+                                    {item.benefit.split(",").map((benefit, index) => (
+                                        <Badge key={index} color="primary" variant="light" size="md" className="mr-1 mb-1">
+                                            {benefit.trim()}
+                                        </Badge>
+                                    ))}
+                                </p>
                             </div>
-                            <div className="flex gap-2 mt-4">
-                                <Button type="button" size="sm" variant="primary" onClick={() => handleEdit(item)}>
-                                    <LuPencil />
-                                </Button>
-                                <Button type="button" size="sm" variant="danger" onClick={() => handleDelete(item.id)}>
-                                    <LuTrash2 />
-                                </Button>
+                            <div className="flex justify-between items-center mt-4">
+                                {/* Menampilkan harga di sebelah kanan tombol aksi */}
+                                <h2 className="text-xl font-bold text-gray-500">{formatCurrency(item.price)}</h2>
+                                <div className="flex gap-2">
+                                    <Button type="button" size="sm" variant="primary" onClick={() => handleEdit(item)}>
+                                        <LuPencil />
+                                    </Button>
+                                    <Button type="button" size="sm" variant="danger" onClick={() => handleDelete(item.id)}>
+                                        <LuTrash2 />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
