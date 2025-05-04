@@ -1,5 +1,4 @@
 import api from "../api";
-import { IUser } from "../types";
 
 export const getUsers = async () => {
     const response = await api.get("/user/all-user", {
@@ -8,15 +7,18 @@ export const getUsers = async () => {
     return response.data;
 };
 
-export const updateUser = async (id: string, payload: IUser) => {
-    const response = await api.put(`/user/update/${id}`, payload, {
+export const updateUser = async (payload: any) => {
+    const response = await api.patch(`/user/update`, payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        }
     });
     return response.data;
 };
 
-export const deleteUser = async (id: string) => {
-    const response = await api.delete(`/user/delete/${id}`, {
+export const deleteUser = async () => {
+    const response = await api.delete(`/user/delete`, {
         withCredentials: true,
     });
     return response.data;
