@@ -18,7 +18,7 @@ export const createEvent = async (payload: any) => {
 };
 
 export const updateEvent = async (id: string, payload: any) => {
-    const response = await api.put(`/event/update-event/${id}`, payload, {
+    const response = await api.patch(`/event/update-event/${id}`, payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
