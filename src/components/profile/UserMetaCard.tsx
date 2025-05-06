@@ -36,6 +36,8 @@ export default function UserMetaCard() {
     resolver: zodResolver(updateProfileValidator),
     defaultValues: {
       name: "",
+      phone: "",
+      instagram: "",
       email: "",
     },
   });
@@ -44,6 +46,8 @@ export default function UserMetaCard() {
     if (user) {
       reset({
         name: user.name || "",
+        phone: user.phone || "",
+        instagram: user.instagram || "",
         email: user.email || "",
       });
       if (user.imageUrl) {
@@ -53,10 +57,11 @@ export default function UserMetaCard() {
   }, [user, reset]);
 
   const handleSave = async (data: z.infer<typeof updateProfileValidator>) => {
-    console.log("Submitting with data:", data);
     setIsLoading(true);
     const formData = new FormData();
     formData.append("name", data.name);
+    formData.append("phone", data.phone);
+    formData.append("instagram", data.instagram);
     formData.append("email", data.email);
     if (imageFile) {
       formData.append("file", imageFile);
@@ -139,10 +144,24 @@ export default function UserMetaCard() {
                     {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
                   </div>
 
+                  {/* Phone */}
+                  <div className="col-span-2">
+                    <Label>WhatsApp</Label>
+                    <Input {...register("phone")} />
+                    {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
+                  </div>
+
+                  {/* Instagram */}
+                  <div className="col-span-2">
+                    <Label>Instagram</Label>
+                    <Input {...register("instagram")} />
+                    {errors.instagram && <p className="text-sm text-red-500">{errors.instagram.message}</p>}
+                  </div>
+
                   {/* Email Address */}
                   <div className="col-span-2">
                     <Label>Email</Label>
-                    <Input {...register("email")} disabled/>
+                    <Input {...register("email")} disabled />
                     {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                   </div>
                 </div>
