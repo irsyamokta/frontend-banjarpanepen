@@ -21,6 +21,16 @@ import Gallery from "./pages/Admin/Gallery";
 import Article from "./pages/Admin/Article";
 import Tour from "./pages/Admin/Tour";
 
+import ClientLayout from "./layout/ClientLayout";
+import Homepage from "./pages/Client/Homepage";
+import ClientTour from "./pages/Client/ClientTour";
+import ClientEvent from "./pages/Client/ClientEvent";
+import ClientArticle from "./pages/Client/ClientArticle";
+import ClientGallery from "./pages/Client/ClientGallery";
+import TourDetailPage from "./pages/Client/TourDetail";
+import EventDetailPage from "./pages/Client/EventDetail";
+import ArticleDetailPage from "./pages/Client/ArticleDetail";
+
 function App() {
   return (
     <>
@@ -30,6 +40,17 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
+            <Route path="/" element={<ClientLayout />} >
+              <Route index element={<Homepage />} />
+              <Route path="/wisata" element={<ClientTour />} />
+              <Route path="/agenda" element={<ClientEvent />} />
+              <Route path="/artikel" element={<ClientArticle />} />
+              <Route path="/galeri" element={<ClientGallery />} />
+
+              <Route path="/wisata/:id" element={<TourDetailPage />} />
+              <Route path="/agenda/:id" element={<EventDetailPage />} />
+              <Route path="/artikel/:id" element={<ArticleDetailPage />} />
+            </Route>
 
             {/* Route Admin */}
             <Route path="/admin" element={
@@ -39,7 +60,6 @@ function App() {
                 </AdminRoute>
               </PrivateRoute>
             }>
-
 
               <Route index element={<Home />} />
               <Route path="wisata" element={<Tour />} />
@@ -53,7 +73,6 @@ function App() {
 
             {/* Route Guest */}
             <Route path="/" element={<GuestRoute />}>
-              <Route index element={<h1>Home</h1>} />
               <Route path="signin" element={<SignIn />} />
             </Route>
 
