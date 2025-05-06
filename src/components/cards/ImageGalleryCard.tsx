@@ -76,7 +76,7 @@ export default function ImageGalleryCard() {
                 {response.data.map((item: IGalleryPayload) => (
                     <div key={item.id} className="relative break-inside-avoid overflow-hidden rounded-xl group">
                         {/* Gambar dengan rasio asli dan rounded */}
-                        <ImageFallback src={item.image} alt={item.title} />
+                        <ImageFallback src={item.image} alt={item.title} className="w-full h-full object-cover" fallbackClassName="aspect-video"/>
 
                         {/* Overlay saat hover */}
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-4 rounded-xl">
