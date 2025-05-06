@@ -236,8 +236,8 @@ export const ModalTourForm = ({
                                         label="Jam Mulai"
                                         value={field.value}
                                         onChange={field.onChange}
-                                        min="08:00"
-                                        max="17:00"
+                                        min="00:00"
+                                        max="23:59"
                                     />
                                 )}
                             />
@@ -257,8 +257,8 @@ export const ModalTourForm = ({
                                         label="Jam Selesai"
                                         value={field.value}
                                         onChange={field.onChange}
-                                        min="08:00"
-                                        max="22:00"
+                                        min="00:00"
+                                        max="23:59"
                                     />
                                 )}
                             />
