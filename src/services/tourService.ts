@@ -7,6 +7,13 @@ export const getTours = async () => {
     return response.data;
 };
 
+export const getTourById = async (id: string) => {
+    const response = await api.get(`/tour/${id}`, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
 export const createTour = async (payload: any) => {
     const response = await api.post("/tour/create-tour", payload, {
         withCredentials: true,
