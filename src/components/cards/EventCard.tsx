@@ -82,7 +82,7 @@ export default function EventCard() {
                         className="flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden"
                     >
                         <div className="w-full h-48 overflow-hidden">
-                            <ImageFallback src={item.thumbnail} alt={item.title} />
+                            <ImageFallback src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" fallbackClassName="w-full h-full object-cover" />
                         </div>
                         <div className="p-6 flex flex-col flex-1 justify-between">
                             {/* Judul dan Deskripsi */}
