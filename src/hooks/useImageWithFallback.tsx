@@ -1,7 +1,21 @@
 import { useState, useEffect } from 'react';
 import { LuImageOff, LuWifiOff } from 'react-icons/lu';
 
-const useImageWithFallback = (thumbnail: string, title: string, isGallery: boolean = false) => {
+interface UseImageWithFallbackProps {
+    thumbnail: string;
+    title: string;
+    isGallery?: boolean;
+    className?: string;
+    fallbackClassName?: string;
+}
+
+const useImageWithFallback = ({
+    thumbnail,
+    title,
+    isGallery = false,
+    className = '',
+    fallbackClassName = '',
+}: UseImageWithFallbackProps) => {
     const [isOnline, setIsOnline] = useState(navigator.onLine);
     const [isImageError, setIsImageError] = useState(false);
 
@@ -23,11 +37,13 @@ const useImageWithFallback = (thumbnail: string, title: string, isGallery: boole
     };
 
     const getImageContent = () => {
+        const fallbackBaseClass = `w-full flex items-center justify-center ${
+            isGallery ? 'bg-gray-100 shadow-lg border p-10' : 'bg-gray-100'
+        } ${fallbackClassName}`;
+
         if (!thumbnail || isImageError) {
             return (
-                <div
-                    className={`w-full h-full flex items-center justify-center ${isGallery ? 'bg-gray-100 shadow-lg border p-10' : 'bg-gray-100'}`}
-                >
+                <div className={fallbackBaseClass}>
                     <LuImageOff size={50} />
                 </div>
             );
@@ -35,9 +51,7 @@ const useImageWithFallback = (thumbnail: string, title: string, isGallery: boole
 
         if (!isOnline) {
             return (
-                <div
-                    className={`w-full h-full flex items-center justify-center ${isGallery ? 'bg-gray-100 shadow-lg border p-10' : 'bg-gray-100'}`}
-                >
+                <div className={fallbackBaseClass}>
                     <LuWifiOff size={50} />
                 </div>
             );
@@ -47,7 +61,7 @@ const useImageWithFallback = (thumbnail: string, title: string, isGallery: boole
             <img
                 src={thumbnail}
                 alt={title}
-                className="w-full h-full object-cover"
+                className={`${className}`}
                 onError={handleImageError}
             />
         );
