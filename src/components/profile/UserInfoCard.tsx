@@ -11,7 +11,7 @@ export default function UserInfoCard() {
             Personal Information
           </h4>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-7 2xl:gap-x-32">
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
                 Nama Lengkap
@@ -27,6 +27,24 @@ export default function UserInfoCard() {
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
                 {user.email}
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
+                WhahtsApp
+              </p>
+              <p className="text-sm font-medium text-gray-800 dark:text-white/90">
+                {user.phone}
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
+                Instagram
+              </p>
+              <p className="text-sm font-medium text-gray-800 dark:text-white/90">
+                @{user.instagram}
               </p>
             </div>
           </div>
