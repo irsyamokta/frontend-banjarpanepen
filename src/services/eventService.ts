@@ -7,6 +7,13 @@ export const getEvents = async () => {
     return response.data;
 };
 
+export const getEventById = async (id: string) => {
+    const response = await api.get(`/event/${id}`, {
+        withCredentials: true,
+    });
+    return response.data;
+};
+
 export const createEvent = async (payload: any) => {
     const response = await api.post("/event/create-event", payload, {
         withCredentials: true,
