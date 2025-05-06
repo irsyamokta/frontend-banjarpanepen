@@ -7,6 +7,13 @@ export const getUsers = async () => {
     return response.data;
 };
 
+export const getUserByContact = async () => {
+    const response = await api.get("/user/contact", {
+        withCredentials: true,
+    });
+    return response.data;
+};
+
 export const updateUser = async (payload: any) => {
     const response = await api.patch(`/user/update`, payload, {
         withCredentials: true,
