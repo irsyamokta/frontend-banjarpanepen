@@ -195,8 +195,8 @@ export const ModalEventForm = ({
                                     label="Waktu"
                                     value={field.value}
                                     onChange={field.onChange}
-                                    min="08:00"
-                                    max="17:00"
+                                    min="00:00"
+                                    max="23:59"
                                 />
                             )}
                         />
