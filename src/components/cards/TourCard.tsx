@@ -80,7 +80,7 @@ export default function TourCard() {
                     className="flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden"
                 >
                     <div className="w-full h-48 overflow-hidden">
-                        <ImageFallback src={item.thumbnail} alt={item.title} />
+                        <ImageFallback src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" fallbackClassName="w-full h-full object-cover"/>
                     </div>
                     <div className="p-6 flex flex-col flex-1 justify-between">
                         {/* Judul dan Deskripsi */}
@@ -94,7 +94,7 @@ export default function TourCard() {
                             <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-gray-500">
                                 <div className="flex items-center gap-2">
                                     <LuCalendar className="w-4 h-4 shrink-0" />
-                                    <span>{item.operational}</span>
+                                    <span>{item.operational.split(",").map((d) => d.trim()).join(", ")}</span>
                                 </div>
                                 <div className="flex items-center gap-2 min-w-0">
                                     <LuMapPin className="w-4 h-4 shrink-0" />
