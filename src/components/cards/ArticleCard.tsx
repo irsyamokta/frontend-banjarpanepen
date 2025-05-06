@@ -101,7 +101,7 @@ export default function ArticleCard() {
 
                         {/* Thumbnail kanan */}
                         <div className="w-40 h-auto overflow-hidden order-last">
-                            <ImageFallback src={item.thumbnail} alt={item.title} />
+                            <ImageFallback src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" fallbackClassName="w-full h-full object-cover" />
                         </div>
                     </div>
                 ))}
