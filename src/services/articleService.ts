@@ -7,6 +7,13 @@ export const getArticles = async () => {
     return response.data;
 };
 
+export const getArticleById = async (id: string) => {
+    const response = await api.get(`/article/${id}`, {
+        withCredentials: true,
+    });
+    return response.data;
+};
+
 export const createArticle = async (payload: any) => {
     const response = await api.post("/article/create-article", payload, {
         withCredentials: true,
