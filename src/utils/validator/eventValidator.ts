@@ -33,6 +33,6 @@ export const eventSchema = z.object({
 
     price: z
         .number({ invalid_type_error: "Harga harus berupa angka!" })
-        .min(10000, { message: "Harga minimal adalah 10000!" })
+        .min(0, { message: "Harga minimal adalah 0!" })
         .optional()
 });
