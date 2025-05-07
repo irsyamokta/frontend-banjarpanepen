@@ -3,6 +3,7 @@ import { formatDateTime } from "../../../utils/dateFormatter";
 import { FiCalendar, FiUser } from "react-icons/fi";
 import ImageFallback from "../../ui/images/ImageFallback";
 
+import { createMarkup } from "../../../utils/htmlMarkup";
 
 interface Article {
     title: string;
@@ -53,9 +54,10 @@ export default function ArticleDetailContent({ article }: ArticleDetailContentPr
                         </p>
                     </div>
                     <hr className="mt-4 mb-4 border-t-2" />
-                    <div className="text-base leading-relaxed text-gray-800">
-                        <p>{article.content}</p>
-                    </div>
+                    <div
+                        className="prose text-base leading-relaxed text-gray-800"
+                        dangerouslySetInnerHTML={createMarkup(article.content || "")}
+                    />
                 </div>
             </div>
         </>
