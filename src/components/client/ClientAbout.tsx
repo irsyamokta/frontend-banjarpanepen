@@ -5,7 +5,9 @@ const ClientAbout: React.FC = () => {
   return (
     <section className="px-6 md:px-12 lg:px-25 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-        <div className="space-y-4 text-2xl md:text-5xl font-extrabold text-center lg:text-left">
+        <div
+          className="space-y-4 text-2xl md:text-5xl font-extrabold text-center lg:text-left"
+          data-aos="fade-right">
           <h2 className="break-words">Mengenal Lebih Dekat</h2>
           <h2 className="text-[#087245] break-words">Desa Banjarpanepen</h2>
         </div>
