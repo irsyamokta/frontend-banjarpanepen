@@ -9,11 +9,11 @@ export default function ClientEvent() {
         <>
             <PageMeta
                 title="Agenda"
-                description="Agenda"
+                description="Temukan agenda kegiatan budaya dan event menarik di Banjarpanepen. Saksikan berbagai acara yang meriah dan menggambarkan kehangatan suasana desa Banjarpanepen."
             />
             <div className="flex flex-col">
                 <Hero
-                    title="Eksplorasi Wisata Banjarpanepen"
+                    title="Kalender Event Wisata Desa"
                     subtitle={`Saksikan beragam kegiatan budaya dan event lokal yang membawa \nsuasana desa menjadi semakin hangat dan meriah`}
                     image={heroImage}
                     heightClass="h-[60vh]"

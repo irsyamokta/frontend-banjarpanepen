@@ -14,7 +14,7 @@ export default function ArticleDetailPage() {
     });
 
     return (
-        <PageShell title={article.title} description="Detail Artikel">
+        <PageShell title={article.title} description="Temukan informasi lengkap tentang wisata di Banjarpanepen. Jelajahi tempat menarik, budaya, dan keindahan alam yang dapat membuat liburan Anda semakin berkesan di Banjarpanepen.">
             <ArticleDetailContent article={article} />
         </PageShell>
     );
