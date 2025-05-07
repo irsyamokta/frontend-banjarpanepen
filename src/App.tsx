@@ -22,7 +22,6 @@ import Gallery from "./pages/Admin/Gallery";
 import Article from "./pages/Admin/Article";
 import Tour from "./pages/Admin/Tour";
 
-import ClientLayout from "./layout/ClientLayout";
 import Homepage from "./pages/Client/Homepage";
 import ClientTour from "./pages/Client/ClientTour";
 import ClientEvent from "./pages/Client/ClientEvent";
@@ -47,24 +46,6 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
-<<<<<<< HEAD
-            <Route path="/" element={<ClientLayout />}>
-              <Route index element={<ClientHome />} />
-            </Route>
-
-            {/* Route Admin */}
-            <Route
-              path="/admin"
-              element={
-                <PrivateRoute>
-                  <AdminRoute>
-                    <AdminLayout />
-                  </AdminRoute>
-                </PrivateRoute>
-              }
-            >
-              <Route index path="dashboard" element={<Home />} />
-=======
             <Route path="/" element={<ClientLayout />} >
               <Route index element={<Homepage />} />
               <Route path="/wisata" element={<ClientTour />} />
@@ -88,7 +69,6 @@ function App() {
 
               <Route index element={<Home />} />
               <Route path="wisata" element={<Tour />} />
->>>>>>> e3e3f24c08b9d4dea76765d5b17723588a7f98a9
               <Route path="paket-wisata" element={<TourPackage />} />
               <Route path="artikel" element={<Article />} />
               <Route path="agenda-desa" element={<Event />} />

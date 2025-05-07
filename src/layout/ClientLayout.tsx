@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-import { SidebarProvider } from "../context/SidebarContext";
-import ClientHeader from "../components/header/ClientHeader";
-import ClientFooter from "../components/header/ClientFooter";
-import ClientHome from "../pages/Client/Home";
-
-const LayoutContent: React.FC = () => {
-  return (
-    <>
-      <ClientHeader />
-      <ClientHome />
-      <ClientFooter />
-    </>
-  );
-};
-
-const ClientLayout: React.FC = () => {
-  return (
-    <SidebarProvider>
-      <LayoutContent />
-    </SidebarProvider>
-  );
-};
-
-export default ClientLayout;
-=======
 import { Outlet } from "react-router";
 import { HeaderProvider } from "../context/HeaderContext";
 import Header from "../components/header/Header";
@@ -54,4 +28,3 @@ export default function ClientLayout() {
         </HeaderProvider>
     );
 }
->>>>>>> e3e3f24c08b9d4dea76765d5b17723588a7f98a9
