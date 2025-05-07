@@ -1,5 +1,4 @@
-import type React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Option {
   value: string;
@@ -12,6 +11,7 @@ interface MultiSelectProps {
   defaultSelected?: string[];
   onChange?: (selected: string[]) => void;
   disabled?: boolean;
+  value: string | string[]; // value bisa string atau array string
 }
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
@@ -20,9 +20,11 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   defaultSelected = [],
   onChange,
   disabled = false,
+  value,
 }) => {
-  const [selectedOptions, setSelectedOptions] =
-    useState<string[]>(defaultSelected);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    Array.isArray(value) ? value : (value ? [value] : defaultSelected) // pastikan value adalah array
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -41,12 +43,16 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   const removeOption = (value: string) => {
     const newSelectedOptions = selectedOptions.filter((opt) => opt !== value);
     setSelectedOptions(newSelectedOptions);
-    onChange?.(newSelectedOptions);
+    onChange?.(newSelectedOptions); // Kirim array ke onChange
   };
 
   const selectedValuesText = selectedOptions.map(
     (value) => options.find((option) => option.value === value)?.text || ""
   );
+
+  useEffect(() => {
+    setSelectedOptions(Array.isArray(value) ? value : (value ? [value] : []));
+  }, [value]);
 
   return (
     <div className="w-full">
@@ -58,7 +64,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         <div className="relative flex flex-col items-center">
           <div onClick={toggleDropdown} className="w-full">
             <div className="mb-2 flex h-11 rounded-lg border border-gray-300 py-1.5 pl-3 pr-3 shadow-theme-xs outline-hidden transition focus:border-brand-300 focus:shadow-focus-ring dark:border-gray-700 dark:bg-gray-900 dark:focus:border-brand-300">
-              <div className="flex flex-wrap flex-auto gap-2">
+              <div className="flex flex-nowrap flex-auto gap-2 overflow-x-auto custom-scroll">
                 {selectedValuesText.length > 0 ? (
                   selectedValuesText.map((text, index) => (
                     <div
@@ -130,22 +136,21 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
           {isOpen && (
             <div
-              className="absolute left-0 z-40 w-full overflow-y-auto bg-white rounded-lg shadow-sm top-full max-h-select dark:bg-gray-900"
+              className="absolute top-full left-0 z-50 w-full max-h-60 overflow-y-auto bg-white rounded-lg shadow-md dark:bg-gray-900"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col">
                 {options.map((option, index) => (
                   <div
                     key={index}
-                    className={`hover:bg-primary/5 w-full cursor-pointer rounded-t border-b border-gray-200 dark:border-gray-800`}
+                    className={`hover:bg-primary/5 w-full cursor-pointer border-b border-gray-200 dark:border-gray-800`}
                     onClick={() => handleSelect(option.value)}
                   >
                     <div
-                      className={`relative flex w-full items-center p-2 pl-2 ${
-                        selectedOptions.includes(option.value)
+                      className={`relative flex w-full items-center p-2 pl-2 ${selectedOptions.includes(option.value)
                           ? "bg-primary/10"
                           : ""
-                      }`}
+                        }`}
                     >
                       <div className="mx-2 leading-6 text-gray-800 dark:text-white/90">
                         {option.text}
@@ -156,6 +161,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               </div>
             </div>
           )}
+
         </div>
       </div>
     </div>

@@ -35,15 +35,6 @@ export const registerSchema = z
                 /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/,
                 "Konfirmasi kata sandi harus mengandung huruf besar, huruf kecil, dan angka"
             ),
-        birthDate: z
-            .string({ required_error: "Tanggal lahir wajib diisi" })
-            .refine(
-                (val) => !isNaN(Date.parse(val)),
-                { message: "Tanggal lahir harus dalam format tanggal yang valid (ISO 8601)" }
-            ),
-        gender: z
-            .string({ required_error: "Jenis kelamin wajib diisi" })
-            .toUpperCase(),
     })
     .refine((data) => data.password === data.passwordConfirmation, {
         path: ["passwordConfirmation"],

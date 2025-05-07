@@ -7,6 +7,13 @@ export const getEvents = async () => {
     return response.data;
 };
 
+export const getEventById = async (id: string) => {
+    const response = await api.get(`/event/${id}`, {
+        withCredentials: true,
+    });
+    return response.data;
+};
+
 export const createEvent = async (payload: any) => {
     const response = await api.post("/event/create-event", payload, {
         withCredentials: true,
@@ -18,7 +25,7 @@ export const createEvent = async (payload: any) => {
 };
 
 export const updateEvent = async (id: string, payload: any) => {
-    const response = await api.put(`/event/update-event/${id}`, payload, {
+    const response = await api.patch(`/event/update-event/${id}`, payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",

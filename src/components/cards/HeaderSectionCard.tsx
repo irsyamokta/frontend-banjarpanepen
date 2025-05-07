@@ -1,4 +1,3 @@
-// HeaderSection.tsx
 import { Link } from "react-router-dom";
 import { LuPlus } from "react-icons/lu";
 import Button from "../ui/button/Button";
@@ -55,6 +54,6 @@ const HeaderSection = ({
             )}
         </div>
     );
-};
+}
 
 export default HeaderSection;

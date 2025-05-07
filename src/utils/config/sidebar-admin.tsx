@@ -4,12 +4,12 @@ export const adminNavItems = [
     {
         icon: <LuLayoutDashboard />,
         name: "Dashboard",
-        path: "/admin/dashboard",
+        path: "/admin",
     },
     {
         icon: <LuMapPinned />,
         name: "Objek Wisata",
-        path: "/admin/users",
+        path: "/admin/wisata",
     },
     {
         icon: <LuTickets />,
@@ -19,7 +19,7 @@ export const adminNavItems = [
     {
         icon: <LuNewspaper />,
         name: "Artikel",
-        path: "/admin/requested-role",
+        path: "/admin/artikel",
     },
     {
         icon: <LuCalendarDays />,
@@ -29,6 +29,6 @@ export const adminNavItems = [
     {
         icon: <LuImage />,
         name: "Galeri",
-        path: "/admin/category",
+        path: "/admin/galeri",
     },
 ];

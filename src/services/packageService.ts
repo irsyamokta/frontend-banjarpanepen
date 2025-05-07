@@ -18,7 +18,7 @@ export const createPackage = async (payload: any) => {
 };
 
 export const updatePackage = async (id: string, payload: any) => {
-    const response = await api.put(`/package/update-package/${id}`, payload, {
+    const response = await api.patch(`/package/update-package/${id}`, payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",

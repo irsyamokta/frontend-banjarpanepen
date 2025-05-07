@@ -12,7 +12,7 @@ interface TextareaProps {
 }
 
 const TextArea: React.FC<TextareaProps> = ({
-  placeholder = "Enter your message",
+  placeholder = "Tulis sesuatu...",
   rows = 3,
   value = "",
   onChange,

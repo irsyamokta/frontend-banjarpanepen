@@ -1,5 +1,4 @@
 import api from "../api";
-import { IArticlePayload } from "../types";
 
 export const getArticles = async () => {
     const response = await api.get("/article/all-article", {
@@ -8,16 +7,29 @@ export const getArticles = async () => {
     return response.data;
 };
 
-export const createArticle = async (payload: IArticlePayload) => {
-    const response = await api.post("/article/create-article", payload, {
+export const getArticleById = async (id: string) => {
+    const response = await api.get(`/article/${id}`, {
         withCredentials: true,
     });
     return response.data;
 };
 
-export const updateArticle = async (id: string, payload: IArticlePayload) => {
-    const response = await api.put(`/article/update-article/${id}`, payload, {
+export const createArticle = async (payload: any) => {
+    const response = await api.post("/article/create-article", payload, {
         withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        }
+    });
+    return response.data;
+};
+
+export const updateArticle = async (id: string, payload: any) => {
+    const response = await api.patch(`/article/update-article/${id}`, payload, {
+        withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
     });
     return response.data;
 };
