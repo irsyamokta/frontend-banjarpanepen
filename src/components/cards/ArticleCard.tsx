@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { getArticles, deleteArticle } from "../../services/articleService";
 import { confirmDialog } from "../../utils/confirmationAlert";
 import { formatDateTime } from "../../utils/dateFormatter";
+import { createMarkup } from "../../utils/htmlMarkup";
 
 import { IArticlePayload } from "../../types";
 
@@ -84,7 +85,10 @@ export default function ArticleCard() {
                         <div className="flex flex-col p-6 flex-1 justify-between">
                             <div className="space-y-2">
                                 <h1 className="text-xl font-semibold text-gray-800">{item.title}</h1>
-                                <p className="text-sm text-gray-600 line-clamp-3">{item.content}</p>
+                                <div
+                                    className="text-sm text-gray-600 line-clamp-3"
+                                    dangerouslySetInnerHTML={createMarkup(item.content || "")}
+                                />
                                 <p className="text-sm text-gray-600 mt-5">Penulis: {item.writer}</p>
                                 <p className="text-xs text-gray-500">Dibuat: {formatDateTime(item.createdAt)}</p>
                                 <p className="text-xs text-gray-500">Diperbarui: {formatDateTime(item.updatedAt)}</p>

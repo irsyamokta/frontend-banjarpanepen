@@ -289,11 +289,84 @@ body {
 	}
 }
 
+.ql-size-small {
+	font-size: 0.75em;
+}
+
+.ql-size-large {
+	font-size: 1.5em;
+}
+
+.ql-size-huge {
+	font-size: 2.5em;
+}
+
+.ql-align-justify {
+	text-align: justify;
+}
+.ql-align-center {
+	text-align: center;
+}
+.ql-align-right {
+	text-align: right;
+}
+.ql-align-left {
+	text-align: left;
+}
+
+.ql-indent-1 {
+	padding-left: 3em;
+}
+.ql-indent-2 {
+	padding-left: 6em;
+}
+.ql-indent-3 {
+	padding-left: 9em;
+}
+.ql-indent-4 {
+	padding-left: 12em;
+}
+
+[data-list="ordered"] {
+	list-style-type: decimal;
+	padding-left: 0.5em;
+	margin-bottom: 0.5em;
+	display: list-item;
+}
+
+[data-list="bullet"] {
+	list-style-type: disc;
+	padding-left: 0.5em;
+	margin-bottom: 0.5em;
+	display: list-item;
+}
+
+[data-list="checked"]::before {
+	content: "☑";
+	margin-right: 0.5em;
+}
+
+[data-list="unchecked"]::before {
+	content: "☐";
+	margin-right: 0.5em;
+}
+
+[data-list="checked"],
+[data-list="unchecked"] {
+	display: list-item;
+	padding-left: 1.5em;
+}
+
+ol,
+ul {
+	padding-left: 1.5em;
+}
+
 .custom-scroll::-webkit-scrollbar {
 	height: 0;
 }
 .custom-scroll::-webkit-scrollbar-thumb {
-	background-color: #d1d5db; 
+	background-color: #d1d5db;
 	border-radius: 4px;
 }
 
