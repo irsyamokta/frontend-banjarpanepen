@@ -9,7 +9,7 @@ export default function ClientGallery() {
         <>
             <PageMeta
                 title="Galeri"
-                description="Galeri"
+                description="Jelajahi galeri visual yang menampilkan keindahan alam, aktivitas wisata, dan kehidupan sehari-hari di Desa Banjarpanepen melalui foto-foto yang memukau."
             />
             <div className="flex flex-col">
                 <Hero

@@ -12,7 +12,7 @@ export default function Homepage() {
         <>
             <PageMeta
                 title="Beranda"
-                description="Beranda"
+                description="Selamat datang di Desa Wisata Banjarpanepen. Jelajahi keindahan alam, budaya lokal, dan keramahan masyarakat desa yang menjadikan setiap kunjungan penuh kenangan."
             />
             <div className="flex flex-col gap-4 md:gap-6">
                 <Hero

@@ -16,7 +16,7 @@ export default function TourDetailPage() {
 
     if (!tour) return null;
     return (
-        <PageShell title={tour.title} description="Detail Wisata">
+        <PageShell title={tour.title} description="Temukan informasi lengkap tentang wisata di Banjarpanepen. Dapatkan detail mengenai lokasi, aktivitas, dan keindahan alam yang bisa Anda nikmati di destinasi wisata ini.">
             <TourDetailContent tour={tour} />
         </PageShell>
     );

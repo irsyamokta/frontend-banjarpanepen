@@ -15,7 +15,7 @@ export default function EventDetailPage() {
 
     if (!event) return null;
     return (
-        <PageShell title={event.title} description="Detail Agenda">
+        <PageShell title={event.title} description="Detail lengkap tentang event dan agenda di Banjarpanepen. Temukan informasi waktu, lokasi, dan kegiatan yang akan berlangsung dalam acara ini untuk pengalaman yang lebih mendalam.">
             <EventDetailContent article={event} />
         </PageShell>
     );
