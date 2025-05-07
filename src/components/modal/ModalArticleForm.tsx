@@ -12,11 +12,12 @@ import { IArticlePayload } from "../../types";
 
 import { Modal } from "../ui/modal";
 import Input from "../form/input/InputField";
-import TextArea from "../form/input/TextArea";
+// import TextArea from "../form/input/TextArea";
 import Label from "../form/Label";
 import Button from "../ui/button/Button";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import RichTextEditor from "../form/RichTextEditor";
 
 interface ModalArticleFormProps {
     mutateData: () => void;
@@ -140,12 +141,10 @@ export const ModalArticleForm = ({
                             control={control}
                             name="content"
                             render={({ field }) => (
-                                <TextArea
-                                    {...field}
-                                    rows={4}
-                                    error={!!errors.content}
-                                    hint={errors.content?.message}
-                                />
+                                <div>
+                                    <RichTextEditor value={field.value} onChange={field.onChange} />
+                                    {errors.content && <p className="text-sm text-red-500 mt-2">{errors.content.message}</p>}
+                                </div>
                             )}
                         />
                     </div>
