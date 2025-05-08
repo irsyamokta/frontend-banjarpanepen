@@ -76,3 +76,9 @@ export interface ITourPayload {
     price: number,
     thumbnail: string,
 }
+
+export interface ISettingPayload {
+    id: string,
+    name: string,
+    category: string,
+}
