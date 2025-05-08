@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -31,7 +32,16 @@ import TourDetailPage from "./pages/Client/TourDetail";
 import EventDetailPage from "./pages/Client/EventDetail";
 import ArticleDetailPage from "./pages/Client/ArticleDetail";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+    });
+  }, []);
+
   return (
     <>
       <AuthProvider>
