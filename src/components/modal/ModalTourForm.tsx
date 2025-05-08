@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
@@ -7,6 +8,7 @@ import { toast } from "react-toastify";
 
 import { tourSchema } from "../../utils/validator/tourValidator";
 import { createTour, updateTour } from "../../services/tourService";
+import { getSettings } from "../../services/settingService";
 
 import { ITourPayload } from "../../types";
 
@@ -36,6 +38,8 @@ export const ModalTourForm = ({
     const [isLoading, setIsLoading] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
 
+    const { data: settings } = useSWR("optionsBenefit", () => getSettings(), { suspense: true });
+    
     const optionsOperational = [
         { value: "Senin", text: "Senin" },
         { value: "Selasa", text: "Selasa" },
@@ -46,12 +50,10 @@ export const ModalTourForm = ({
         { value: "Minggu", text: "Minggu" },
     ];
 
-    const optionsFacility = [
-        { value: "Musholla", text: "Musholla" },
-        { value: "Toilet", text: "Toilet" },
-        { value: "Parkir", text: "Parkir" },
-        { value: "Warung", text: "Warung" },
-    ];
+    const optionsFacility = settings?.filter((item: { category: string }) => item.category === "Fasilitas").map((item: { name: string }) => ({
+        value: item.name,
+        text: item.name,
+    })) ?? [];
 
 
     const {
