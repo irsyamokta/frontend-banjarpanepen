@@ -13,7 +13,7 @@ interface BasicCardOneProps {
 
 export default function BasicCardOne({ id, title, location, thumbnail }: BasicCardOneProps) {
     return (
-        <div>
+        <div data-aos="zoom-in-up">
             <ImageFallback
                 src={thumbnail}
                 alt={title}
