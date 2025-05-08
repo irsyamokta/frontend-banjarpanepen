@@ -24,7 +24,7 @@ export default function AuthLayout({
                 />
               </Link>
               <p className="text-sm text-center text-gray-100 dark:text-white/60">
-                Tuhan memberikan keindahan alam untuk kita nikmati dengan segala keindahannya
+                Tuhan menciptakan keindahan alam dengan segala pesonanya sebagai anugerah yang patut kita syukuri, renungi, dan nikmati dalam kehidupan sehari-hari sebagai bentuk penghargaan atas ciptaan-Nya.
               </p>
             </div>
           </div>

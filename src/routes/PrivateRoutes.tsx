@@ -10,8 +10,6 @@ interface PrivateRouteProps {
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
     const { user, loading } = useAuth();
 
-    console.log(user);
-
     if (loading) {
         return <Spinner />;
     }

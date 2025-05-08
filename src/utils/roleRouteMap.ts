@@ -1,5 +1,5 @@
 const roleRouteMap: Record<string, string> = {
-    ADMIN: "/admin/dashboard",
+    ADMIN: "/admin",
     USER: "/"
 };
 

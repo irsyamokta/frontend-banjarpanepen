@@ -1,4 +1,4 @@
-import api from "../api/index";
+import api from "../api";
 import { ILoginPayload, IRegisterPayload } from "../types/index";
 
 const login = async (payload: ILoginPayload) => {
