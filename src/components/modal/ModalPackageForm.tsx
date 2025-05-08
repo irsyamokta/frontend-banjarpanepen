@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
@@ -7,6 +8,7 @@ import { toast } from "react-toastify";
 
 import { packageSchema } from "../../utils/validator/packageValidator";
 import { createPackage, updatePackage } from "../../services/packageService";
+import { getSettings } from "../../services/settingService";
 
 import { IPackagePayload } from "../../types";
 
@@ -34,12 +36,12 @@ export const ModalPackageForm = ({
     const [isLoading, setIsLoading] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
 
-    const options = [
-        { value: "Curug", text: "Curug" },
-        { value: "Pemandian", text: "Pemandian" },
-        { value: "Gunung", text: "Gunung" },
-        { value: "Pantai", text: "Pantai" },
-    ];
+    const { data: settings } = useSWR("optionsBenefit", () => getSettings(), { suspense: true });
+
+    const options = settings?.filter((item: { category: string }) => item.category === "Benefit").map((item: { name: string }) => ({
+        value: item.name,
+        text: item.name,
+    })) ?? [];
 
     const {
         control,
