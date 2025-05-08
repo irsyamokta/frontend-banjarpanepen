@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import AdminLayout from "./layout/AdminLayout";
 
+import PublicRoute from "./routes/PublicRoutes";
 import GuestRoute from "./routes/GuestRoutes";
 import PrivateRoute from "./routes/PrivateRoutes";
 import AdminRoute from "./routes/AdminRoutes";
@@ -34,6 +35,7 @@ import ArticleDetailPage from "./pages/Client/ArticleDetail";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Settings from "./pages/Admin/Settings";
 
 function App() {
   useEffect(() => {
@@ -50,16 +52,18 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
-            <Route path="/" element={<ClientLayout />} >
-              <Route index element={<Homepage />} />
-              <Route path="/wisata" element={<ClientTour />} />
-              <Route path="/agenda" element={<ClientEvent />} />
-              <Route path="/artikel" element={<ClientArticle />} />
-              <Route path="/galeri" element={<ClientGallery />} />
+            <Route path="/" element={<PublicRoute />}>
+              <Route element={<ClientLayout />}>
+                <Route index element={<Homepage />} />
+                <Route path="wisata" element={<ClientTour />} />
+                <Route path="agenda" element={<ClientEvent />} />
+                <Route path="artikel" element={<ClientArticle />} />
+                <Route path="galeri" element={<ClientGallery />} />
 
-              <Route path="/wisata/:id" element={<TourDetailPage />} />
-              <Route path="/agenda/:id" element={<EventDetailPage />} />
-              <Route path="/artikel/:id" element={<ArticleDetailPage />} />
+                <Route path="wisata/:id" element={<TourDetailPage />} />
+                <Route path="agenda/:id" element={<EventDetailPage />} />
+                <Route path="artikel/:id" element={<ArticleDetailPage />} />
+              </Route>
             </Route>
 
             {/* Route Admin */}
@@ -77,6 +81,7 @@ function App() {
               <Route path="artikel" element={<Article />} />
               <Route path="agenda-desa" element={<Event />} />
               <Route path="galeri" element={<Gallery />} />
+              <Route path="pengaturan" element={<Settings />} />
 
               <Route path="profile" element={<UserProfiles />} />
             </Route>
