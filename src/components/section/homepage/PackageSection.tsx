@@ -12,10 +12,10 @@ export default function Package() {
     return (
         <section id="packages" className="px-6 md:px-12 lg:px-25 py-12 bg-gray-50">
             <div className="text-center">
-                <h2 className="text-2xl md:text-title-md font-extrabold text-center">
+                <h2 className="text-2xl md:text-title-md font-extrabold text-center" data-aos="fade-up" data-aos-delay="100">
                     Temukan <span className="text-primary">Paket Wisata</span> Sesuai Gaya Liburanmu
                 </h2>
-                <p className="text-gray-600 md:text-lg leading-relaxed mt-4">
+                <p className="text-gray-600 md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
                     Mulai dari wisata sehari penuh hingga live-in bersama warga lokal,
                     setiap paket kami hadir <br />
                     untuk membawa kamu lebih dekat dengan alam dan budaya Banjarpanepen

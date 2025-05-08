@@ -14,7 +14,7 @@ export default function Gallery() {
                 <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
                     {response?.data?.map((item: IGalleryPayload) => (
                         <PhotoView key={item.id} src={item.image}>
-                            <div className="relative break-inside-avoid overflow-hidden rounded-xl group cursor-zoom-in">
+                            <div className="relative break-inside-avoid overflow-hidden rounded-xl group cursor-zoom-in" data-aos="zoom-in-up" data-aos-duration="700" data-aos-offset="0">
                                 <ImageFallback
                                     src={item.image}
                                     alt={item.title}

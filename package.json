@@ -21,6 +21,7 @@
     "@react-jvectormap/core": "^1.0.4",
     "@react-jvectormap/world": "^1.1.2",
     "@tailwindcss/vite": "^4.1.4",
+    "aos": "^2.3.4",
     "apexcharts": "^4.1.0",
     "axios": "^1.8.4",
     "clsx": "^2.1.1",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@types/aos": "^3.0.7",
     "@types/quill": "^2.0.14",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

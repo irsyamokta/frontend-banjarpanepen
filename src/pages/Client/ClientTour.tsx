@@ -9,11 +9,11 @@ export default function ClientTour() {
         <>
             <PageMeta
                 title="Wisata"
-                description="Wisata"
+                description="Jelajahi keindahan alam dan budaya Banjarpanepen melalui berbagai destinasi wisata yang menakjubkan. Temukan pengalaman wisata unik yang memperkaya perjalanan Anda di desa Banjarpanepen."
             />
             <div className="flex flex-col">
                 <Hero
-                    title="Kalender Event Wisata Desa"
+                    title="Eksplorasi Wisata Banjarpanepen"
                     subtitle={`Temukan keajaiban alam, budaya, dan keramahan desa yang menanti untuk kamu jelajahi. \nSetiap sudut Banjarpanepen menawarkan pengalaman wisata yang berbeda dan bermakna`}
                     image={heroImage}
                     heightClass="h-[60vh]"

@@ -18,7 +18,7 @@ export default function BasicCardTwo({
     benefits,
 }: PackageCardProps) {
     return (
-        <div>
+        <div data-aos="zoom-in-up">
             <ImageFallback
                 src={image}
                 alt={title}

@@ -9,7 +9,7 @@ export default function ClientArticle() {
         <>
             <PageMeta
                 title="Artikel"
-                description="Artikel"
+                description="Baca artikel menarik seputar wisata, budaya, dan kehidupan di Banjarpanepen. Temukan panduan perjalanan dan kisah inspiratif yang memperkenalkan keindahan desa Banjarpanepen."
             />
             <div className="flex flex-col">
                 <Hero
