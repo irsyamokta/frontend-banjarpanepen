@@ -22,7 +22,7 @@ export default function BasicCardThree({
     basePath
 }: BasicCardThreeProps) {
     return (
-        <div className="w-full">
+        <div className="w-full" data-aos="zoom-in-up">
 
             <ImageFallback
                 src={thumbnail}
