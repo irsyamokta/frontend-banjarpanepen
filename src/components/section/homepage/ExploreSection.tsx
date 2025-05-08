@@ -14,11 +14,11 @@ export default function Explore() {
     return (
         <section className="px-6 md:px-12 lg:px-25">
             <div className="text-center">
-                <h2 className="text-2xl md:text-title-md font-extrabold text-center">
+                <h2 className="text-2xl md:text-title-md font-extrabold text-center" data-aos="fade-up" data-aos-delay="100">
                     <span className="text-primary">Eksplorasi Wisata</span>{" "}
                     Banjarpanepen
                 </h2>
-                <p className="text-gray-600 md:text-lg leading-relaxed mt-4">
+                <p className="text-gray-600 md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
                     Nikmati beragam destinasi menarik dari alam yang asri hingga pengalaman budaya yang autentik
                 </p>
             </div>
