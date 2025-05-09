@@ -32,7 +32,7 @@ export default function UserDropdown() {
   const handleSignout = async () => {
     try {
       await logout();
-      navigate("/signin");
+      navigate("/");
     } catch (err) {
       console.error("Logout gagal", err);
     }
