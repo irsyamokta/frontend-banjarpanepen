@@ -14,7 +14,7 @@ export default function AuthLayout({
         <div className="items-center hidden w-full h-full lg:w-1/2 bg-primary dark:bg-white/5 lg:grid">
           <div className="relative flex items-center justify-center z-1">
             {/* <!-- ===== Common Grid Shape Start ===== --> */}
-            <div className="flex flex-col items-center max-w-xs">
+            <div className="flex flex-col items-center max-w-sm">
               <Link to="/" className="block mb-4">
                 <img
                   width={600}
@@ -29,9 +29,9 @@ export default function AuthLayout({
             </div>
           </div>
         </div>
-        <div className="fixed z-50 hidden bottom-6 right-6 sm:block">
+        {/* <div className="fixed z-50 hidden bottom-6 right-6 sm:block">
           <ThemeTogglerTwo />
-        </div>
+        </div> */}
       </div>
     </div>
   );

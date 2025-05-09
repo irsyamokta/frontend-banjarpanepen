@@ -263,7 +263,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                     }`}
                 >
                   {isExpanded || isHovered || isMobileOpen ? (
-                    "Others"
+                    "Lainnya"
                   ) : (
                     <HiDotsHorizontal className="size-6" />
                   )}

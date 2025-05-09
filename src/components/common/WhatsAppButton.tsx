@@ -28,7 +28,9 @@ const WhatsAppButton = () => {
     }
 
     const handleClick = () => {
-        window.open(`https://wa.me/${contact?.phone}`, "_blank");
+        window.open(`https://wa.me/${contact?.phone}?text=${encodeURIComponent(
+            `Halo, saya tertarik dengan wisata yang ada di Banjarpanepen! Bisakah kami diinformasikan lebih lanjut tentang wisata tersebut.`
+        )}`, "_blank");
     };
 
     return (

@@ -17,7 +17,9 @@ function FooterContact() {
         {
             icon: <LuPhone className="text-xl" />,
             text: phone,
-            href: `https://wa.me/${phone}`,
+            href: `https://wa.me/${phone}?text=${encodeURIComponent(
+            `Halo, saya tertarik dengan wisata yang ada di Banjarpanepen! Bisakah kami diinformasikan lebih lanjut tentang wisata tersebut.`
+        )}`,
         },
         {
             icon: <LuInstagram className="text-xl" />,

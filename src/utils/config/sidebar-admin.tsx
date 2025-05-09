@@ -1,4 +1,4 @@
-import { LuLayoutDashboard, LuMapPinned, LuNewspaper, LuTickets, LuCalendarDays, LuImage  } from "react-icons/lu";
+import { LuLayoutDashboard, LuMapPinned, LuNewspaper, LuTickets, LuCalendarDays, LuImage, LuSettings  } from "react-icons/lu";
 
 export const adminNavItems = [
     {
@@ -30,5 +30,13 @@ export const adminNavItems = [
         icon: <LuImage />,
         name: "Galeri",
         path: "/admin/galeri",
+    },
+];
+
+export const OthersItems = [
+    {
+        icon: <LuSettings />,
+        name: "Pengaturan",
+        path: "/admin/pengaturan",
     },
 ];

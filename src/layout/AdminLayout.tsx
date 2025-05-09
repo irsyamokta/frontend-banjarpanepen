@@ -1,5 +1,5 @@
 import { SidebarProvider, useSidebar } from "../context/SidebarContext";
-import { adminNavItems } from "../utils/config/sidebar-admin"
+import { adminNavItems, OthersItems } from "../utils/config/sidebar-admin"
 import { Outlet } from "react-router";
 import AppHeader from "./AppHeader";
 import Backdrop from "./Backdrop";
@@ -11,7 +11,7 @@ const LayoutContent: React.FC = () => {
   return (
     <div className="min-h-screen xl:flex">
       <div>
-        <AppSidebar navItems={adminNavItems} othersItems={[]} />
+        <AppSidebar navItems={adminNavItems} othersItems={OthersItems} />
         <Backdrop />
       </div>
       <div

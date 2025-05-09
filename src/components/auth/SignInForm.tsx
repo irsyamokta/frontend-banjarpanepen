@@ -91,11 +91,11 @@ export default function SignInForm() {
               )}
             </div>
 
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
               <Link to="/forgot-password" className="text-sm font-normal text-brand-900 hover:underline dark:text-white">
                 Lupa password?
               </Link>
-            </div>
+            </div> */}
 
             <Button type="submit" variant="default" disabled={isLoading} className="w-full ">
               {isLoading ? (
