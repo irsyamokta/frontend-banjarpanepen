@@ -9,7 +9,7 @@ const AdminRoute = ({ children }: { children: ReactNode }) => {
     if (loading) return <Spinner />;
 
     if (!user) {
-        return <Navigate to="/signin" />;
+        return <Navigate to="/" />;
     }
 
     if (user.role !== "ADMIN") {
