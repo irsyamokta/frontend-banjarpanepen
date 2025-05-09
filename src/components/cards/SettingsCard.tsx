@@ -82,6 +82,7 @@ export default function SettingsCard() {
                         </div>
                     </div>
                     <div className="mt-5 text-sm">
+                        {benefitSettings.length === 0 && <p className="text-sm text-gray-500">Tidak ada data</p>}
                         {benefitSettings.map((item: ISettingPayload) => (
                             <div>
                                 <div key={item.id} className="flex justify-between items-center">
@@ -112,6 +113,7 @@ export default function SettingsCard() {
                         </div>
                     </div>
                     <div className="mt-5 text-sm">
+                        {facilitySettings.length === 0 && <p className="text-sm text-gray-500">Tidak ada data</p>}
                         {facilitySettings.map((item: ISettingPayload) => (
                             <div>
                                 <div key={item.id} className="flex justify-between items-center">
