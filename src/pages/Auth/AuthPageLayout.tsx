@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router";
-import ThemeTogglerTwo from "../../components/common/ThemeTogglerTwo";
 
 export default function AuthLayout({
   children,
@@ -29,9 +28,6 @@ export default function AuthLayout({
             </div>
           </div>
         </div>
-        {/* <div className="fixed z-50 hidden bottom-6 right-6 sm:block">
-          <ThemeTogglerTwo />
-        </div> */}
       </div>
     </div>
   );
