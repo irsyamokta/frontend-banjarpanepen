@@ -52,9 +52,12 @@ export default function BasicCardTwo({
                 </div>
 
                 <div className="mt-6">
-                    <Link to={`https://wa.me/${contact?.phone}?text=${encodeURIComponent(
-                        `Halo, saya tertarik dengan paket *${title}* seharga ${price}. Bisa dijelaskan lebih lanjut?`
-                    )}`} target="_blank">
+                    <Link
+                        to={`https://wa.me/${contact?.phone}?text=${encodeURIComponent(
+                            `Halo, saya tertarik dengan paket *${title}* seharga ${price}. Bisa dijelaskan lebih lanjut?\n\nBerikut benefit yang saya lihat:\n${benefits.map((b) => `- ${b}`).join("\n")}`
+                        )}`}
+                        target="_blank"
+                    >
                         <Button className="w-full" size="xs" variant="default">
                             Pilih Paket <LuArrowUpRight size={30} />
                         </Button>
