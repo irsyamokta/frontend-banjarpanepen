@@ -69,9 +69,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                   selectedValuesText.map((text, index) => (
                     <div
                       key={index}
-                      className="group flex items-center justify-center rounded-full border-[0.7px] border-transparent bg-gray-100 py-1 pl-2.5 pr-2 text-sm text-gray-800 hover:border-gray-200 dark:bg-gray-800 dark:text-white/90 dark:hover:border-gray-800"
+                      className="group max-w-[140px] flex items-center justify-between rounded-full border-[0.7px] border-transparent bg-gray-100 py-1 pl-2.5 pr-2 text-sm text-gray-800 hover:border-gray-200 dark:bg-gray-800 dark:text-white/90 dark:hover:border-gray-800"
                     >
-                      <span className="flex-initial max-w-full">{text}</span>
+                      <span className="flex-initial max-w-[120px] truncate">{text}</span>
                       <div className="flex flex-row-reverse flex-auto">
                         <div
                           onClick={(e) => {

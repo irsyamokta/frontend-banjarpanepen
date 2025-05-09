@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import Button from "../../ui/button/Button";
-import { LuSquareCheck, LuCalendar, LuArrowUpRight } from "react-icons/lu";
+import { LuSquareCheck, LuArrowUpRight } from "react-icons/lu";
 import ImageFallback from "../../ui/images/ImageFallback";
+import useUserContact from "../../../hooks/useUserContact";
 
 interface PackageCardProps {
     image: string;
     title: string;
     price: string;
     benefits: string[];
-    // duration: string;
 }
 
 export default function BasicCardTwo({
@@ -17,6 +17,8 @@ export default function BasicCardTwo({
     price,
     benefits,
 }: PackageCardProps) {
+    const { contact } = useUserContact();
+
     return (
         <div data-aos="zoom-in-up">
             <ImageFallback
@@ -49,16 +51,13 @@ export default function BasicCardTwo({
                     </ul>
                 </div>
 
-                {/* <div className="mt-4">
-                    <h4 className="text-xl font-semibold">Durasi</h4>
-                    <p className="flex items-center text-xl text-[#495057] mt-2">
-                        <LuCalendar className="mr-2 text-[#087245]" size={25} />
-                        {duration}
-                    </p>
-                </div> */}
-
                 <div className="mt-6">
-                    <Link to={"https://wa.me/628123456789"} target="_blank">
+                    <Link
+                        to={`https://wa.me/${contact?.phone}?text=${encodeURIComponent(
+                            `Halo, saya tertarik dengan paket *${title}* seharga ${price}. Bisa dijelaskan lebih lanjut?\n\nBerikut benefit yang saya lihat:\n${benefits.map((b) => `- ${b}`).join("\n")}`
+                        )}`}
+                        target="_blank"
+                    >
                         <Button className="w-full" size="xs" variant="default">
                             Pilih Paket <LuArrowUpRight size={30} />
                         </Button>
