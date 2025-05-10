@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           dangerous-clean-slate: true
-          server-dir: /visitbapen/
+          server-dir: /app/
           protocol: ftps
           exclude: |
             **/node_modules/**
