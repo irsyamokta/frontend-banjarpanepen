@@ -31,7 +31,7 @@ jobs:
           server-dir: /visitbapen/
           protocol: ftps
           exclude: |
-            **node_modules*
+            **/node_modules/**
             **/.git*
             **/.git*/**
             .git*
