@@ -37,23 +37,22 @@ export default function ArticleDetailContent({ article }: ArticleDetailContentPr
                     <h1 className="text-2xl md:text-title-md font-bold mb-3 md:mb-5">
                         {article.title}
                     </h1>
-                    <div className="flex gap-5">
-                        <p className="flex text-gray-600 mb-4">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-5">
+                        <p className="flex text-sm text-gray-600 md:mb-4">
                             <FiCalendar
-                                className="mr-3 text-primary"
-                                size={24}
+                                className="mr-3 w-5 h-5 text-primary"
                             />
                             {formatDateTime(article.createdAt)}
                         </p>
-                        <p className="flex text-gray-600 mb-4">
+                        <p className="flex text-sm text-gray-600 md:mb-4">
                             <FiUser
-                                className="mr-3 text-primary"
-                                size={24}
+                                className="mr-3 w-5 h-5 text-primary"
+                                size={20}
                             />
                             {article.writer}
                         </p>
                     </div>
-                    <hr className="mt-4 mb-4 border-t-2" />
+                    <hr className="mt-4 sm:mt-0 mb-4 border-t-2" />
                     <div
                         className="prose text-base leading-relaxed text-gray-800"
                         dangerouslySetInnerHTML={createMarkup(article.content || "")}
