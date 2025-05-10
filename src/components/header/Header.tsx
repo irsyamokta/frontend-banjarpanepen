@@ -37,7 +37,7 @@ export default function Header() {
                 <img
                     src={solidBg ? logoColor : logoWhite}
                     alt="Logo"
-                    className="w-40 h-auto"
+                    className="w-24 sm:w-40 h-auto"
                 />
             </button>
 
