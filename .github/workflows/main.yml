@@ -28,5 +28,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           dangerous-clean-slate: true
-          server-dir: /sedotwc/
-          protocol: ftps
+          server-dir: /visitbapen/
+          protocol: ftp
