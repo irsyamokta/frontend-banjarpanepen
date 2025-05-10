@@ -16,7 +16,7 @@ export default function ClientTour() {
                     title="Eksplorasi Wisata Banjarpanepen"
                     subtitle={`Temukan keajaiban alam, budaya, dan keramahan desa yang menanti untuk kamu jelajahi. \nSetiap sudut Banjarpanepen menawarkan pengalaman wisata yang berbeda dan bermakna`}
                     image={heroImage}
-                    heightClass="h-[60vh]"
+                    heightClass="h-[80vh] md:h-[60vh]"
                     showButton={false}
                 />
                 <TourSection />

@@ -16,10 +16,10 @@ export default function ClientGallery() {
                     title="Cerita dalam Gambar"
                     subtitle={`Setiap foto menyimpan kisah. Jelajahi galeri visual kami yang merekam \nkeindahan dan aktivitas wisata di Desa Banjarpanepen`}
                     image={heroImage}
-                    heightClass="h-[60vh]"
+                    heightClass="h-[80vh] md:h-[60vh]"
                     showButton={false}
                 />
-                <GallerySection/>
+                <GallerySection />
             </div>
         </>
     );
