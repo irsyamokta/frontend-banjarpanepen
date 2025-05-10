@@ -16,7 +16,7 @@ export default function ClientArticle() {
                     title="Menjelajah Lewat Tulisan"
                     subtitle={`Baca kisah-kisah menarik, panduan perjalanan, serta informasi budaya yang \nmemperkenalkan lebih dalam kehangatan dan kekayaan Desa Banjarpanepen`}
                     image={heroImage}
-                    heightClass="h-[60vh]"
+                    heightClass="h-[80vh] md:h-[60vh]"
                     showButton={false}
                 />
                 <ArticleSection />
