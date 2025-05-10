@@ -6,11 +6,6 @@ export const loginSchema = z.object({
         .email("Format email tidak valid"),
     password: z
         .string({ required_error: "Kata sandi wajib diisi" })
-        .min(8, "Kata sandi minimal 8 karakter")
-        .regex(
-            /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/,
-            "Kata sandi harus mengandung huruf besar, huruf kecil dan angka"
-        ),
 });
 
 export const registerSchema = z
