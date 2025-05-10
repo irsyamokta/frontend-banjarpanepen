@@ -5,6 +5,9 @@ import { LuChevronDown } from "react-icons/lu";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useSidebar } from "../context/SidebarContext";
 
+import logoColor from "../assets/logo/logo-color.png";
+import logoWhite from "../assets/logo/logo-white.png";
+
 type NavItem = {
   name: string;
   icon: React.ReactNode;
@@ -222,8 +225,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
         <Link to="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
-              <img src="/src/assets/logo/logo-color.png" alt="Logo" className="dark:hidden w-48" />
-              <img src="/src/assets/logo/logo-white.png" alt="Logo" className="hidden dark:block w-48" />
+              <img src={logoColor} alt="Logo" className="dark:hidden w-48" />
+              <img src={logoWhite} alt="Logo" className="hidden dark:block w-48" />
             </>
           ) : (
             <img
