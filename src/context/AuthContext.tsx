@@ -1,46 +1,44 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
+import useSWR from "swr";
 import authService from "../services/authService";
 import { ILoginPayload, IUser, IAuthContextType } from "../types/index.d";
 
 const AuthContext = createContext<IAuthContextType | undefined>(undefined);
 
+const fetchUser = async (): Promise<IUser> => {
+    return await authService.me();
+};
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<IUser | null>(null);
-    const [loading, setLoading] = useState(true);
+    const { data: user, error, mutate, isValidating } = useSWR("/me", fetchUser);
 
     const login = async (payload: ILoginPayload) => {
         const res = await authService.login(payload);
         const user = res.data;
 
-        setUser(user);
-
+        mutate(user, false);
         return user;
     };
 
     const logout = async () => {
         await authService.logout();
-        setUser(null);
+        mutate(undefined, false); 
     };
 
     const checkAuth = async () => {
-        try {
-            const res = await authService.me();
-            const user = res;
-            setUser(user);
-
-        } catch (error) {
-            setUser(null);
-        } finally {
-            setLoading(false);
-        }
+        await mutate(); 
     };
 
-    useEffect(() => {
-        checkAuth();
-    }, []);
+    const value = useMemo(() => ({
+        user: user || null,
+        loading: isValidating && !user && !error,
+        login,
+        logout,
+        checkAuth
+    }), [user, isValidating, error]);
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout, checkAuth }}>
+        <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
     );
