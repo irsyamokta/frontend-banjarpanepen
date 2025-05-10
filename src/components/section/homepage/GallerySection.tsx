@@ -24,7 +24,7 @@ export default function Gallery() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-3 md:gap-8">
                 {response?.data?.slice(0, 4).map((gallery: any, index: number) => (
                     <div key={index} className="overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="100">
                         <ImageFallback
