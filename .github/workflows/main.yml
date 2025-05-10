@@ -29,4 +29,3 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           dangerous-clean-slate: true
           server-dir: /visitbapen/
-          protocol: sftp
