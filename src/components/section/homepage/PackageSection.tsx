@@ -4,10 +4,7 @@ import { getPackages } from "../../../services/packageService";
 import { formatCurrency } from "../../../utils/currencyFormatter";
 
 export default function Package() {
-    const { data: response, error, isLoading } = useSWR("cardPackage", getPackages);
-
-    if (isLoading) return <div className="text-center">Loading...</div>;
-    if (error) return <div className="text-center text-red-500">Gagal memuat data.</div>;
+    const { data: response } = useSWR("cardPackage", getPackages);
 
     return (
         <section id="packages" className="px-6 md:px-12 lg:px-25 py-12 bg-gray-50">
