@@ -128,7 +128,7 @@ export const ModalEventForm = ({
         <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
             <div className="no-scrollbar relative w-full max-w-[700px] max-h-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
                 <h4 className="text-2xl font-semibold mb-4">
-                    {initialData ? "Edit Paket Wisata" : "Buat Paket Wisata"}
+                    {initialData ? "Edit Agenda Desa" : "Buat Agenda Desa"}
                 </h4>
 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
