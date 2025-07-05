@@ -16,10 +16,10 @@ export default function ClientEvent() {
                     title="Kalender Event Wisata Desa"
                     subtitle={`Saksikan beragam kegiatan budaya dan event lokal yang membawa \nsuasana desa menjadi semakin hangat dan meriah`}
                     image={heroImage}
-                    heightClass="h-[60vh]"
+                    heightClass="h-[80vh] md:h-[60vh]"
                     showButton={false}
                 />
-                <EventSection/>
+                <EventSection />
             </div>
         </>
     );

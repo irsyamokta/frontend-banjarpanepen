@@ -49,10 +49,9 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
                     <h1 className="text-2xl md:text-title-md font-bold mb-3 md:mb-5">
                         {tour.title}
                     </h1>
-                    <p className="flex text-gray-600 mb-4">
+                    <p className="flex text-sm text-gray-600 mb-4">
                         <PiMapPinSimpleAreaBold
-                            className="mr-3 text-primary"
-                            size={24}
+                            className="mr-3 text-primary w-5 h-5 flex-shrink-0"
                         />
                         {tour.location}
                     </p>

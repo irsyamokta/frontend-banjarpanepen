@@ -18,7 +18,7 @@ export default function Explore() {
                     <span className="text-primary">Eksplorasi Wisata</span>{" "}
                     Banjarpanepen
                 </h2>
-                <p className="text-gray-600 md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
+                <p className="text-gray-600 text-sm md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
                     Nikmati beragam destinasi menarik dari alam yang asri hingga pengalaman budaya yang autentik
                 </p>
             </div>
@@ -36,8 +36,8 @@ export default function Explore() {
             </div>
 
             <div className="text-center mt-[56px]">
-                <Button size="md" variant="default" onClick={() => window.open("/wisata", "_self")}>
-                    Lihat Semua <LuArrowUpRight size={30} />
+                <Button size="xs" variant="default" onClick={() => window.open("/wisata", "_self")} data-aos="fade-up" data-aos-delay="100">
+                    Lihat Semua <LuArrowUpRight size={24} />
                 </Button>
             </div>
         </section>

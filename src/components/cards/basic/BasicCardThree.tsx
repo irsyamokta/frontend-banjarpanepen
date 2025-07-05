@@ -33,8 +33,8 @@ export default function BasicCardThree({
 
             <div className="mt-4">
                 <h3 className="text-base font-bold text-gray-900 line-clamp-1">{title}</h3>
-                <p className="text-base text-gray-500 flex items-center mt-2">
-                    <LuCalendar className="mr-2 text-primary" size={24} />
+                <p className="text-sm md:text-base text-gray-500 flex items-center mt-2">
+                    <LuCalendar className="mr-2 text-primary w-5 h-5" />
                     {date}
                 </p>
 

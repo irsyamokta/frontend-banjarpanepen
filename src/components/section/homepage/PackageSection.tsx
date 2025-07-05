@@ -12,7 +12,7 @@ export default function Package() {
                 <h2 className="text-2xl md:text-title-md font-extrabold text-center" data-aos="fade-up" data-aos-delay="100">
                     Temukan <span className="text-primary">Paket Wisata</span> Sesuai Gaya Liburanmu
                 </h2>
-                <p className="text-gray-600 md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
+                <p className="text-gray-600 text-sm md:text-lg leading-relaxed mt-4" data-aos="fade-up" data-aos-delay="200">
                     Mulai dari wisata sehari penuh hingga live-in bersama warga lokal,
                     setiap paket kami hadir <br />
                     untuk membawa kamu lebih dekat dengan alam dan budaya Banjarpanepen

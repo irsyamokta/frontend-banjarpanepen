@@ -1,54 +1,55 @@
-# React + TypeScript + Vite
+# VisitBapen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+VisitBapen adalah sebuah website untuk Desa Wisata Banjarpanepen yang berfungsi sebagai pusat informasi digital mengenai destinasi wisata, budaya lokal, kegiatan masyarakat, dan fasilitas yang tersedia di desa Banjarpanepen. Website ini bertujuan untuk mendukung promosi pariwisata desa dan memperkenalkan potensi lokal kepada wisatawan secara lebih luas dan modern.
 
-Currently, two official plugins are available:
+## Features
+- **Beranda Informasi**: Menyajikan informasi ringkas tentang desa dan daya tarik utamanya.
+- **Galeri Wisata**: Menampilkan foto-foto dan video dari spot wisata dan event lokal.
+- **Artikel dan Agenda**: Update kegiatan masyarakat dan event yang akan datang.
+- **Kontak dan Lokasi**: Informasi kontak pengelola dan peta lokasi desa.
+- **Manajemen Paket Wisata**: Memudahkan Admin dalam mengelola paket perjalanan wisata.
+- **Manajemen Destinasi Wisata**: Memudahkan Admin dalam mengelola destinasi wisata yang ditawarkan.
+- **Manajemen Artikel**: Memudahkan Admin dalam membuat dan mengelola konten artikel informatif.
+- **Manajemen Agenda Desa**: Memudahkan Admin dalam mengatur jadwal acara.
+- **Manajemen Fasilitas dan Benfit**: Memudahkan Admin dalam mengelola informasi fasilitas desa dan benefit wisatawan.
+- **Responsive**: Tampilan web yang optimal di berbagai perangkat.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Backend**: Express.Js
+- **Frontend**: React.Js with Typescipt, TailwindCSS for Styling
+- **Database**: PostgreSQL
+- **Others**: Supabase, Railway, Hostinger
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Demo Project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+https://visitbapen.com/
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## Preview
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/1.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/2.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/3.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/4.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/5.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/6.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/7.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/8.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/9.png)
+
+![App Screenshot](https://github.com/irsyamokta/assets/blob/ad62f6c69fff7d40171a19eeb6e94b492b1f066d/visitbapen/10.png)
+
+## Authors
+
+- [@irsyamokta](https://github.com/irsyamokta)

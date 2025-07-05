@@ -27,7 +27,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           server-dir: /app/
           protocol: ftps
           exclude: |
