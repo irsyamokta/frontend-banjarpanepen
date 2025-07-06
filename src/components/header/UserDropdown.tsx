@@ -56,7 +56,7 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <img src={user.imageUrl ? user.imageUrl : "/src/assets/img/user.png"} alt="User" />
+          <img src={user.image_url ? user.image_url : "/src/assets/img/image-user.png"} alt="User" />
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">{user.name}</span>
