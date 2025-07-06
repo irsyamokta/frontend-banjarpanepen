@@ -9,7 +9,7 @@ interface Article {
     title: string;
     content?: string;
     thumbnail: string;
-    createdAt: string;
+    created_at: string;
     writer: string;
 }
 
@@ -42,7 +42,7 @@ export default function ArticleDetailContent({ article }: ArticleDetailContentPr
                             <FiCalendar
                                 className="mr-3 w-5 h-5 text-primary"
                             />
-                            {formatDateTime(article.createdAt)}
+                            {formatDateTime(article.created_at)}
                         </p>
                         <p className="flex text-sm text-gray-600 md:mb-4">
                             <FiUser
