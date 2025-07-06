@@ -69,7 +69,7 @@ export default function Header() {
                             <button
                                 onClick={() => handleNavigate(path)}
                                 className={`
-                    w-full text-left px-4 py-2 rounded-md transition duration-200
+                    w-full text-left px-4 md:px-0 lg:px-2 py-2 rounded-md transition duration-200
                     ${isMobile
                                         ? isActive
                                             ? "bg-primary text-white"
