@@ -33,8 +33,8 @@ export interface IArticlePayload {
     content: string,
     writer: string,
     thumbnail: string,
-    createdAt: string,
-    updatedAt: string,
+    created_at: string,
+    updated_at: string,
 }
 
 export interface IEventPayload {
