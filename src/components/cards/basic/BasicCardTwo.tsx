@@ -20,7 +20,7 @@ export default function BasicCardTwo({
     const { contact } = useUserContact();
 
     return (
-        <div data-aos="zoom-in-up">
+        <div data-aos="zoom-in-up" className="flex flex-col h-full">
             <ImageFallback
                 src={image}
                 alt={title}
@@ -28,7 +28,7 @@ export default function BasicCardTwo({
                 fallbackClassName="aspect-5/3 rounded-2xl"
             />
 
-            <div>
+            <div className="flex flex-col flex-1">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mt-6 line-clamp-1">{title}</h3>
                 <p className="text-2xl md:text-3xl font-extrabold text-primary mt-4">
                     {price}
@@ -51,14 +51,14 @@ export default function BasicCardTwo({
                     </ul>
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-auto pt-6">
                     <Link
                         to={`https://wa.me/${contact?.phone}?text=${encodeURIComponent(
                             `Halo, saya tertarik dengan paket *${title}* seharga ${price}. Bisa dijelaskan lebih lanjut?\n\nBerikut benefit yang saya lihat:\n${benefits.map((b) => `- ${b}`).join("\n")}`
                         )}`}
                         target="_blank"
                     >
-                        <Button className="w-full" size="xs" variant="default">
+                        <Button className="w-full flex items-center justify-center gap-2" size="xs" variant="default">
                             Pilih Paket <LuArrowUpRight size={30} />
                         </Button>
                     </Link>

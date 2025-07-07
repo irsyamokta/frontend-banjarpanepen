@@ -90,8 +90,8 @@ export default function ArticleCard() {
                                     dangerouslySetInnerHTML={createMarkup(item.content || "")}
                                 />
                                 <p className="text-sm text-gray-600 mt-5">Penulis: {item.writer}</p>
-                                <p className="text-xs text-gray-500">Dibuat: {formatDateTime(item.createdAt)}</p>
-                                <p className="text-xs text-gray-500">Diperbarui: {formatDateTime(item.updatedAt)}</p>
+                                <p className="text-xs text-gray-500">Dibuat: {formatDateTime(item.created_at)}</p>
+                                <p className="text-xs text-gray-500">Diperbarui: {formatDateTime(item.updated_at)}</p>
                             </div>
                             <div className="flex gap-2 mt-4">
                                 <Button type="button" size="sm" variant="primary" onClick={() => handleEdit(item)}>

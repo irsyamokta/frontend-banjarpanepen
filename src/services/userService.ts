@@ -1,7 +1,7 @@
 import api from "../api";
 
 export const getUsers = async () => {
-    const response = await api.get("/user/all-user", {
+    const response = await api.get("/user/all", {
         withCredentials: true,
     });
     return response.data;
@@ -15,8 +15,11 @@ export const getUserByContact = async () => {
 };
 
 export const updateUser = async (payload: any) => {
-    const response = await api.patch(`/user/update`, payload, {
+    const response = await api.post(`/user/update`, payload, {
         withCredentials: true,
+        params: {
+            _method: "PATCH",
+        },
         headers: {
             "Content-Type": "multipart/form-data",
         }

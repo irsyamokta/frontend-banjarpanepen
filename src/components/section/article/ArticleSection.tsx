@@ -7,7 +7,7 @@ interface Article {
     id: string;
     title: string;
     thumbnail: string;
-    createdAt: string;
+    created_at: string;
 }
 
 export default function ArticleSection() {
@@ -20,7 +20,7 @@ export default function ArticleSection() {
                     key={article.id}
                     id={article.id}
                     title={article.title}
-                    date={formatCalendarDate(article.createdAt)}
+                    date={formatCalendarDate(article.created_at)}
                     thumbnail={article.thumbnail}
                     label="Baca Artikel"
                     basePath="artikel"

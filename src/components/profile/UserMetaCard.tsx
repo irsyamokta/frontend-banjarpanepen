@@ -23,7 +23,7 @@ export default function UserMetaCard() {
   const { user } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState("/src/assets/img/user.png");
+  const [imagePreview, setImagePreview] = useState("/src/assets/img/img-user.png");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const {

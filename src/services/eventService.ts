@@ -1,7 +1,7 @@
 import api from "../api";
 
 export const getEvents = async () => {
-    const response = await api.get("/event/all-event", {
+    const response = await api.get("/event/all", {
         withCredentials: true,
     });
     return response.data;
@@ -15,7 +15,7 @@ export const getEventById = async (id: string) => {
 };
 
 export const createEvent = async (payload: any) => {
-    const response = await api.post("/event/create-event", payload, {
+    const response = await api.post("/event/create", payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
@@ -25,8 +25,11 @@ export const createEvent = async (payload: any) => {
 };
 
 export const updateEvent = async (id: string, payload: any) => {
-    const response = await api.patch(`/event/update-event/${id}`, payload, {
+    const response = await api.post(`/event/update/${id}`, payload, {
         withCredentials: true,
+        params: {
+            _method: "PATCH",
+        },
         headers: {
             "Content-Type": "multipart/form-data",
         }
@@ -35,7 +38,7 @@ export const updateEvent = async (id: string, payload: any) => {
 };
 
 export const deleteEvent = async (id: string) => {
-    const response = await api.delete(`/event/delete-event/${id}`, {
+    const response = await api.delete(`/event/delete/${id}`, {
         withCredentials: true,
     });
     return response.data;
