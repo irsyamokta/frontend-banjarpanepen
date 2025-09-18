@@ -3,7 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { ScrollToTop } from "./components/common/ScrollToTop";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import AdminLayout from "./layout/AdminLayout";
 
@@ -47,7 +47,11 @@ function App() {
     <>
       <AuthProvider>
         <Router>
-          <ToastContainer style={{ zIndex: 9999 }} position="top-center" autoClose={3000} />
+          <ToastContainer
+            style={{ zIndex: 9999 }}
+            position="top-center"
+            autoClose={3000}
+          />
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
@@ -66,14 +70,16 @@ function App() {
             </Route>
 
             {/* Route Admin */}
-            <Route path="/admin" element={
-              <PrivateRoute>
-                <AdminRoute>
-                  <AdminLayout />
-                </AdminRoute>
-              </PrivateRoute>
-            }>
-
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <AdminLayout />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            >
               <Route index element={<Home />} />
               <Route path="wisata" element={<Tour />} />
               <Route path="paket-wisata" element={<TourPackage />} />
@@ -99,4 +105,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
