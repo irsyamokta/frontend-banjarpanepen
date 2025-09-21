@@ -15,7 +15,7 @@ export interface IUser {
     name: string,
     email: string,
     phone: string,
-    role: "ADMIN" | "USER",
+    role: "ADMIN" | "USER" | "Visitor",
     imageUrl: string,
 }
 

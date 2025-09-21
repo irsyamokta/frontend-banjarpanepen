@@ -13,6 +13,7 @@ import PrivateRoute from "./routes/PrivateRoutes";
 import AdminRoute from "./routes/AdminRoutes";
 
 import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Admin/Home";
 import TourPackage from "./pages/Admin/TourPackage";
 import Event from "./pages/Admin/Event";
@@ -94,6 +95,10 @@ function App() {
             {/* Route Guest */}
             <Route path="/" element={<GuestRoute />}>
               <Route path="signin" element={<SignIn />} />
+            </Route>
+
+            <Route path="/" element={<GuestRoute />}>
+              <Route path="signup" element={<SignUp />} />
             </Route>
 
             {/* 404 */}

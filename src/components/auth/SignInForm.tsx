@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,16 +7,26 @@ import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import { loginSchema } from "../../utils/validator/authValidator";
-import { AiOutlineLoading3Quarters, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import {
+  AiOutlineLoading3Quarters,
+  AiFillEye,
+  AiFillEyeInvisible,
+} from "react-icons/ai";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof loginSchema>>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -30,10 +41,12 @@ export default function SignInForm() {
     try {
       await login(values);
       toast.success("Berhasil login!");
+      navigate("/");
     } catch (err) {
       const error = err as AxiosError<{ message?: string }>;
       toast.error(
-        error.response?.data?.message || "Login gagal, periksa kembali email dan password"
+        error.response?.data?.message ||
+          "Login gagal, periksa kembali email dan password"
       );
     } finally {
       setLoading(false);
@@ -42,18 +55,29 @@ export default function SignInForm() {
 
   return (
     <div className="flex flex-col flex-1">
+      <div className="w-full max-w-md mx-auto mb-5 sm:pt-10">
+        <Link
+          to="/"
+          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+        >
+          {/* <ChevronLeftIcon className="size-5" /> */}
+          Back to dashboard
+        </Link>
+      </div>
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
             <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Masuk Admin
+              Masuk
             </h1>
           </div>
 
           {/* FORM */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <Label>Email <span className="text-error-500">*</span></Label>
+              <Label>
+                Email <span className="text-error-500">*</span>
+              </Label>
               <Input
                 placeholder="Masukan email anda"
                 {...register("email")}
@@ -62,7 +86,9 @@ export default function SignInForm() {
               />
             </div>
             <div>
-              <Label>Password <span className="text-error-500">*</span></Label>
+              <Label>
+                Password <span className="text-error-500">*</span>
+              </Label>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -72,21 +98,17 @@ export default function SignInForm() {
                 />
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowPassword(!showPassword)
-                  }
+                  onClick={() => setShowPassword(!showPassword)}
                   className="absolute top-1/2 right-4 -translate-y-1/2 flex items-center text-gray-500 hover:text-gray-700"
                   tabIndex={-1}
                 >
-                  {showPassword ? (
-                    <AiFillEyeInvisible />
-                  ) : (
-                    <AiFillEye />
-                  )}
+                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                 </button>
               </div>
               {errors.password?.message && (
-                <p className="mt-1 text-sm text-error-500">{errors.password.message}</p>
+                <p className="mt-1 text-sm text-error-500">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
@@ -96,7 +118,12 @@ export default function SignInForm() {
               </Link>
             </div> */}
 
-            <Button type="submit" variant="default" disabled={isLoading} className="w-full ">
+            <Button
+              type="submit"
+              variant="default"
+              disabled={isLoading}
+              className="w-full "
+            >
               {isLoading ? (
                 <>
                   <AiOutlineLoading3Quarters className="animate-spin text-lg" />
@@ -106,7 +133,6 @@ export default function SignInForm() {
                 "SignIn"
               )}
             </Button>
-
           </form>
         </div>
       </div>
