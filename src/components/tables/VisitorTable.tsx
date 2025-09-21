@@ -95,7 +95,9 @@ export default function VisitorTable() {
             ) : (
               sortedVisits.map((visit, idx) => (
                 <TableRow key={visit.id || idx}>
-                  <TableCell className="px-3 py-2 text-sm">{idx + 1}</TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                    {idx + 1}
+                  </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                     {visit.nama_pengunjung}
                   </TableCell>
