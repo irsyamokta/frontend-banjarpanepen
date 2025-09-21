@@ -1,6 +1,7 @@
 const roleRouteMap: Record<string, string> = {
     ADMIN: "/admin",
-    USER: "/"
+    USER: "/",
+    Visitor: "/",
 };
 
 export default roleRouteMap;
