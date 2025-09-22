@@ -3,7 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { ScrollToTop } from "./components/common/ScrollToTop";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import AdminLayout from "./layout/AdminLayout";
 
@@ -13,6 +13,7 @@ import PrivateRoute from "./routes/PrivateRoutes";
 import AdminRoute from "./routes/AdminRoutes";
 
 import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Admin/Home";
 import TourPackage from "./pages/Admin/TourPackage";
 import Event from "./pages/Admin/Event";
@@ -47,7 +48,11 @@ function App() {
     <>
       <AuthProvider>
         <Router>
-          <ToastContainer style={{ zIndex: 9999 }} position="top-center" autoClose={3000} />
+          <ToastContainer
+            style={{ zIndex: 9999 }}
+            position="top-center"
+            autoClose={3000}
+          />
           <ScrollToTop />
           <Routes>
             {/* Route Public */}
@@ -66,14 +71,16 @@ function App() {
             </Route>
 
             {/* Route Admin */}
-            <Route path="/admin" element={
-              <PrivateRoute>
-                <AdminRoute>
-                  <AdminLayout />
-                </AdminRoute>
-              </PrivateRoute>
-            }>
-
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <AdminRoute>
+                    <AdminLayout />
+                  </AdminRoute>
+                </PrivateRoute>
+              }
+            >
               <Route index element={<Home />} />
               <Route path="wisata" element={<Tour />} />
               <Route path="paket-wisata" element={<TourPackage />} />
@@ -90,6 +97,10 @@ function App() {
               <Route path="signin" element={<SignIn />} />
             </Route>
 
+            <Route path="/" element={<GuestRoute />}>
+              <Route path="signup" element={<SignUp />} />
+            </Route>
+
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -99,4 +110,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

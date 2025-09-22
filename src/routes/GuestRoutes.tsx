@@ -9,7 +9,7 @@ const GuestRoute = () => {
   if (loading) return <Spinner />;
 
   if (user) {
-    const role = user.role || "USER";
+    const role = user.role || "USER" || "Visitor";
     const redirectTo = roleRouteMap[role.toUpperCase()] || "/";
     return <Navigate to={redirectTo} replace />;
   }
