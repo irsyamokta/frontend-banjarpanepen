@@ -1,21 +1,21 @@
 import api from "../api";
 
 export const getTours = async () => {
-    const response = await api.get("/tour/all", {
+    const response = await api.get("/tours", {
         withCredentials: true,
     });
     return response.data;
 };
 
 export const getTourById = async (id: string) => {
-    const response = await api.get(`/tour/${id}`, {
+    const response = await api.get(`/tours/${id}`, {
         withCredentials: true,
     });
     return response.data;
 }
 
 export const createTour = async (payload: any) => {
-    const response = await api.post("/tour/create", payload, {
+    const response = await api.post("/tours", payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
@@ -25,7 +25,7 @@ export const createTour = async (payload: any) => {
 };
 
 export const updateTour = async (id: string, payload: any) => {
-    const response = await api.post(`/tour/update/${id}`, payload, {
+    const response = await api.post(`/tours/${id}`, payload, {
         withCredentials: true,
         params: {
             _method: "PATCH",
@@ -38,7 +38,7 @@ export const updateTour = async (id: string, payload: any) => {
 };
 
 export const deleteTour = async (id: string) => {
-    const response = await api.delete(`/tour/delete/${id}`, {
+    const response = await api.delete(`/tours/${id}`, {
         withCredentials: true,
     });
     return response.data;

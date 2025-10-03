@@ -23,7 +23,7 @@ export default function UserMetaCard() {
   const { user } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState("/src/assets/img/img-user.png");
+  const [imagePreview, setImagePreview] = useState(user?.avatar || "/src/assets/img/img-user.png");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const {
@@ -161,7 +161,7 @@ export default function UserMetaCard() {
                   {/* Email Address */}
                   <div className="col-span-2">
                     <Label>Email</Label>
-                    <Input {...register("email")} disabled />
+                    <Input {...register("email")} readOnly />
                     {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                   </div>
                 </div>
