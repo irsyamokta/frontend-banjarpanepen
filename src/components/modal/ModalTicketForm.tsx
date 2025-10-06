@@ -5,55 +5,48 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
-import { eventSchema } from "../../utils/validator/eventValidator";
-import { createEvent, updateEvent } from "../../services/eventService";
-import { formatDate } from "../../utils/dateFormatter";
+import { ticketSchema } from "../../utils/validator/ticketValidator";
+import { createTicket, updateTicket } from "../../services/ticketService";
 
-import { IEventPayload } from "../../types";
+import { ITicketPayload } from "../../types";
 
 import { Modal } from "../ui/modal";
-import CurrencyInput from "../form/input/CurrencyInput";
 import Input from "../form/input/InputField";
-import TimePicker from "../form/time-picker";
+import CurrencyInput from "../form/input/CurrencyInput";
 import TextArea from "../form/input/TextArea";
 import Label from "../form/Label";
-import DatePicker from "../form/date-picker";
 import Button from "../ui/button/Button";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-interface ModalEventFormProps {
+interface ModalTicketFormProps {
     mutateData: () => void;
-    initialData?: IEventPayload | null;
+    initialData?: ITicketPayload | null;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export const ModalEventForm = ({
+export const ModalTicketForm = ({
     mutateData,
     initialData,
     isOpen,
     onClose,
-}: ModalEventFormProps) => {
+}: ModalTicketFormProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
 
     const {
         register,
-        watch,
-        setValue,
         handleSubmit,
         reset,
         control,
         formState: { errors },
-    } = useForm<z.infer<typeof eventSchema>>({
-        resolver: zodResolver(eventSchema),
+    } = useForm<z.infer<typeof ticketSchema>>({
+        resolver: zodResolver(ticketSchema),
         defaultValues: {
             title: "",
             description: "",
-            date: "",
-            time: "",
-            place: "",
+            location: "",
             price: 0,
         },
     });
@@ -63,18 +56,14 @@ export const ModalEventForm = ({
             reset({
                 title: initialData.title,
                 description: initialData.description,
-                date: formatDate(initialData.date),
-                time: initialData.time,
-                place: initialData.place,
+                location: initialData.location,
                 price: initialData.price,
             });
         } else {
             reset({
                 title: "",
                 description: "",
-                date: "",
-                time: "",
-                place: "",
+                location: "",
                 price: 0,
             });
         }
@@ -82,11 +71,11 @@ export const ModalEventForm = ({
         setImageFile(null);
     }, [initialData, reset]);
 
-    const onSubmit = async (data: z.infer<typeof eventSchema>) => {
+    const onSubmit = async (data: z.infer<typeof ticketSchema>) => {
         try {
             if (!initialData && !imageFile) {
                 onClose();
-                toast.error("Thumbnail tidak boleh kosong!");
+                toast.error("Cover image tidak boleh kosong!");
                 return;
             }
 
@@ -95,25 +84,24 @@ export const ModalEventForm = ({
             const formData = new FormData();
             formData.append("title", data.title);
             formData.append("description", data.description);
-            formData.append("date", data.date);
-            formData.append("time", data.time);
-            formData.append("place", data.place);
-            formData.append("price", (data.price ?? 0).toString());
+            formData.append("location", data.location);
+            formData.append("price", data.price.toString());
             if (imageFile) {
                 formData.append("file", imageFile);
             }
 
             if (initialData) {
-                await updateEvent(initialData.id, formData);
-                toast.success("Agenda berhasil diperbarui!");
+                await updateTicket(initialData.id, formData);
+                toast.success("Tiket berhasil diperbarui!");
             } else {
-                await createEvent(formData);
-                toast.success("Agenda berhasil ditambahkan!");
+                await createTicket(formData);
+                toast.success("Tiket berhasil ditambahkan!");
                 reset();
             }
 
             mutateData();
             onClose();
+            reset();
             setImageFile(null);
         } catch (error) {
             if (error instanceof AxiosError) {
@@ -129,7 +117,7 @@ export const ModalEventForm = ({
         <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs xsm:max-w-sm sm:max-w-[700px] m-4">
             <div className="no-scrollbar relative w-full max-w-[700px] max-h-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
                 <h4 className="text-2xl font-semibold mb-4">
-                    {initialData ? "Edit Agenda Desa" : "Buat Agenda Desa"}
+                    {initialData ? "Edit Tiket" : "Tambah Tiket"}
                 </h4>
 
                 <form
@@ -142,7 +130,7 @@ export const ModalEventForm = ({
                     }}
                 >
                     <div>
-                        <Label>Thumbnail</Label>
+                        <Label>Cover Image</Label>
                         <input
                             type="file"
                             accept="image/*"
@@ -155,8 +143,8 @@ export const ModalEventForm = ({
                     </div>
 
                     <div>
-                        <Label>Nama Agenda</Label>
-                        <Input {...register("title")} placeholder="Masukkan nama agenda" />
+                        <Label>Judul Tiket</Label>
+                        <Input {...register("title")} placeholder="Masukkan judul tiket" />
                         {errors.title && <p className="text-sm text-red-500 mt-2">{errors.title.message}</p>}
                     </div>
 
@@ -174,63 +162,28 @@ export const ModalEventForm = ({
                                 />
                             )}
                         />
-                    </div>
-
-                    <div className="col-span-2">
-                        <Label>Tanggal</Label>
-                        <DatePicker
-                            id="date"
-                            mode="single"
-                            placeholder="YYYY-MM-DD"
-                            value={watch("date")}
-                            onChange={(date) => {
-                                if (date) {
-                                    const formatted = new Date(date).toISOString().split("T")[0];
-                                    setValue("date", formatted);
-                                }
-                            }}
-                        />
-                        {errors.date && <p className="text-sm text-red-500 mt-2">{errors.date.message}</p>}
+                        {errors.description && <p className="text-sm text-red-500 mt-2">{errors.description.message}</p>}
                     </div>
 
                     <div>
-                        <Controller
-                            name="time"
-                            control={control}
-                            rules={{ required: "Waktu harus diisi" }}
-                            render={({ field }) => (
-                                <TimePicker
-                                    id="time"
-                                    label="Waktu"
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    min="00:00"
-                                    max="23:59"
-                                />
-                            )}
-                        />
-                        {errors.time && (<p className="text-sm text-red-500 mt-2">{errors.time.message}</p>)}
-                    </div>
-
-                    <div>
-                        <Label>Tempat</Label>
-                        <Input {...register("place")} placeholder="Masukkan tempat" />
-                        {errors.place && <p className="text-sm text-red-500 mt-2">{errors.place.message}</p>}
+                        <Label>Lokasi</Label>
+                        <Input {...register("location")} placeholder="Masukkan lokasi" />
+                        {errors.location && <p className="text-sm text-red-500 mt-2">{errors.location.message}</p>}
                     </div>
 
                     <div>
                         <Label>Harga Tiket</Label>
                         <Controller
-                                name="price"
-                                control={control}
-                                render={({ field }) => (
-                                    <CurrencyInput
-                                        value={field.value as number}
-                                        onChange={(val) => field.onChange(val)}
-                                        placeholder="0"
-                                    />
-                                )}
-                            />
+                            name="price"
+                            control={control}
+                            render={({ field }) => (
+                                <CurrencyInput
+                                    value={field.value}
+                                    onChange={(val) => field.onChange(val)}
+                                    placeholder="0"
+                                />
+                            )}
+                        />
                         {errors.price && <p className="text-sm text-red-500 mt-2">{errors.price.message}</p>}
                     </div>
 

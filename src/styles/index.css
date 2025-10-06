@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&.dark &);
 
 @theme {
 	--font-outfit: Plus Jakarta Sans, sans-serif;

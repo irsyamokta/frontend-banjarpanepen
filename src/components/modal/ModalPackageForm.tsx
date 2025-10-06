@@ -14,6 +14,7 @@ import { IPackagePayload } from "../../types";
 
 import { Modal } from "../ui/modal";
 import Input from "../form/input/InputField";
+import CurrencyInput from "../form/input/CurrencyInput";
 import MultiSelect from "../form/MultiSelect";
 import Label from "../form/Label";
 import Button from "../ui/button/Button";
@@ -119,13 +120,21 @@ export const ModalPackageForm = ({
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
+        <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs xsm:max-w-sm sm:max-w-[700px] m-4">
             <div className="bg-white dark:bg-gray-900 p-6 rounded-3xl">
                 <h4 className="text-2xl font-semibold mb-4">
                     {initialData ? "Edit Paket Wisata" : "Buat Paket Wisata"}
                 </h4>
 
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+                            e.preventDefault();
+                        }
+                    }}
+                >
                     <div>
                         <Label>Thumbnail</Label>
                         <input
@@ -147,7 +156,17 @@ export const ModalPackageForm = ({
 
                     <div>
                         <Label>Harga Paket Wisata</Label>
-                        <Input type="number" className="no-spinner" min={0} {...register("price", { valueAsNumber: true })} />
+                        <Controller
+                            name="price"
+                            control={control}
+                            render={({ field }) => (
+                                <CurrencyInput
+                                    value={field.value as number}
+                                    onChange={(val) => field.onChange(val)}
+                                    placeholder="0"
+                                />
+                            )}
+                        />
                         {errors.price && <p className="text-sm text-red-500 mt-2">{errors.price.message}</p>}
                     </div>
 

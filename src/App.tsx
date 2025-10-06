@@ -6,6 +6,7 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import 'react-toastify/dist/ReactToastify.css';
 
 import AdminLayout from "./layout/AdminLayout";
+import DropdownLayout from "./layout/DropdownLayout";
 
 import PublicRoute from "./routes/PublicRoutes";
 import GuestRoute from "./routes/GuestRoutes";
@@ -13,14 +14,18 @@ import PrivateRoute from "./routes/PrivateRoutes";
 import AdminRoute from "./routes/AdminRoutes";
 
 import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Admin/Home";
 import TourPackage from "./pages/Admin/TourPackage";
 import Event from "./pages/Admin/Event";
 import NotFound from "./pages/Errors/NotFound";
-import UserProfiles from "./pages/Admin/UserProfiles";
+import UserProfiles from "./pages/Profile/UserProfiles";
 import Gallery from "./pages/Admin/Gallery";
 import Article from "./pages/Admin/Article";
 import Tour from "./pages/Admin/Tour";
+import Ticket from "./pages/Admin/Ticket";
+import User from "./pages/Admin/User";
+import Transaction from "./pages/Admin/Transaction";
 
 import ClientLayout from "./layout/ClientLayout";
 import Homepage from "./pages/Client/Homepage";
@@ -63,6 +68,9 @@ function App() {
                 <Route path="agenda/:id" element={<EventDetailPage />} />
                 <Route path="artikel/:id" element={<ArticleDetailPage />} />
               </Route>
+              <Route element={<DropdownLayout />}>
+                <Route path="profile" element={<UserProfiles />} />
+              </Route>
             </Route>
 
             {/* Route Admin */}
@@ -77,9 +85,12 @@ function App() {
               <Route index element={<Home />} />
               <Route path="wisata" element={<Tour />} />
               <Route path="paket-wisata" element={<TourPackage />} />
+              <Route path="tiket" element={<Ticket />} />
               <Route path="artikel" element={<Article />} />
               <Route path="agenda-desa" element={<Event />} />
               <Route path="galeri" element={<Gallery />} />
+              <Route path="transaksi" element={<Transaction />} />
+              <Route path="pengguna" element={<User />} />
               <Route path="pengaturan" element={<Settings />} />
 
               <Route path="profile" element={<UserProfiles />} />
@@ -88,6 +99,7 @@ function App() {
             {/* Route Guest */}
             <Route path="/" element={<GuestRoute />}>
               <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
             </Route>
 
             {/* 404 */}

@@ -14,8 +14,7 @@ export const updateProfileValidator = z.object({
         .max(15, { message: "Nomor telepon maksimal 15 karakter!" }),
 
     instagram: z
-        .string()
-        .nonempty({ message: "Nomor telepon tidak boleh kosong!" }),
+        .string(),
 
     email: z
         .string()

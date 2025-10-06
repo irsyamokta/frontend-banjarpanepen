@@ -12,7 +12,6 @@ import { IArticlePayload } from "../../types";
 
 import { Modal } from "../ui/modal";
 import Input from "../form/input/InputField";
-// import TextArea from "../form/input/TextArea";
 import Label from "../form/Label";
 import Button from "../ui/button/Button";
 
@@ -109,13 +108,21 @@ export const ModalArticleForm = ({
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
+        <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs xsm:max-w-sm sm:max-w-[700px] m-4">
             <div className="no-scrollbar relative w-full max-w-[700px] max-h-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
                 <h4 className="text-2xl font-semibold mb-4">
                     {initialData ? "Edit Artikel" : "Buat Artikel"}
                 </h4>
 
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+                            e.preventDefault();
+                        }
+                    }}
+                >
                     <div>
                         <Label>Thumbnail</Label>
                         <input

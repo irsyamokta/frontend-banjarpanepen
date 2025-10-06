@@ -6,8 +6,8 @@ export default function SignUp() {
   return (
     <>
       <PageMeta
-        title="SignUp Admin"
-        description="This is React.js SignUp Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title="SignUp"
+        description="Daftar akun untuk mengelola konten dan data. Akses mudah ke berbagai fitur melalui halaman login yang aman dan cepat."
       />
       <AuthLayout>
         <SignUpForm />

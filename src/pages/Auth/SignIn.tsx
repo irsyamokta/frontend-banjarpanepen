@@ -6,7 +6,7 @@ export default function SignIn() {
   return (
     <>
       <PageMeta
-        title="SignIn Admin"
+        title="SignIn"
         description="Masuk ke dashboard admin untuk mengelola konten dan data. Akses mudah ke berbagai fitur melalui halaman login yang aman dan cepat."
       />
       <AuthLayout>
