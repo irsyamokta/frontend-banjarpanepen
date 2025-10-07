@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
@@ -29,7 +30,6 @@ export default function SignInForm() {
     setLoading(true);
     try {
       await login(values);
-      toast.success("Berhasil login!");
     } catch (err) {
       const error = err as AxiosError<{ message?: string }>;
       toast.error(
@@ -46,7 +46,7 @@ export default function SignInForm() {
         <div>
           <div className="mb-5 sm:mb-8">
             <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Masuk Admin
+              Masuk
             </h1>
           </div>
 
@@ -103,11 +103,22 @@ export default function SignInForm() {
                   Loading...
                 </>
               ) : (
-                "SignIn"
+                "Login"
               )}
             </Button>
 
           </form>
+          <div className="mt-5">
+            <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
+              Belum memiliki akun? {""}
+              <Link
+                to="/signup"
+                className="text-primary hover:text-primary/90 font-bold"
+              >
+                Registrasi
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

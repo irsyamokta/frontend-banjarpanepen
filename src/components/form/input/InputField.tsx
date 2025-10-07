@@ -22,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
   } else if (success) {
     inputClasses += ` border-success-500 focus:border-success-300 focus:ring-success-500/20 dark:text-success-400 dark:border-success-500 dark:focus:border-success-800`;
   } else {
-    inputClasses += ` bg-transparent text-gray-800 border-gray-300 focus:border-brand-300 focus:ring-brand-500/20 dark:border-gray-700 dark:text-white/90 dark:focus:border-brand-800`;
+    inputClasses += ` bg-transparent text-gray-800 border-gray-300 focus:border-primary focus:ring-primary/20 dark:border-gray-700 dark:text-white/90 dark:focus:border-brand-800`;
   }
 
   return (

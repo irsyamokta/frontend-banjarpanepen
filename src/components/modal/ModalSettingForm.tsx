@@ -36,6 +36,8 @@ export const ModalSettingForm = ({
     const options = [
         { value: "Benefit", label: "Benefit" },
         { value: "Fasilitas", label: "Fasilitas" },
+        { value: "Pendapatan", label: "Pendapatan" },
+        { value: "Pengeluaran", label: "Pengeluaran" },
     ];
 
     const {
@@ -96,13 +98,21 @@ export const ModalSettingForm = ({
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
+        <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs xsm:max-w-sm sm:max-w-[700px] m-4">
             <div className="bg-white dark:bg-gray-900 p-6 rounded-3xl">
                 <h4 className="text-2xl font-semibold mb-4">
                     {initialData ? "Edit Opsi" : "Tambah Opsi"}
                 </h4>
 
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+                            e.preventDefault();
+                        }
+                    }}
+                >
                     <div>
                         <Label>Nama Opsi</Label>
                         <Input {...register("name")} placeholder="Masukkan nama opsi" />

@@ -12,6 +12,7 @@ import { formatDate } from "../../utils/dateFormatter";
 import { IEventPayload } from "../../types";
 
 import { Modal } from "../ui/modal";
+import CurrencyInput from "../form/input/CurrencyInput";
 import Input from "../form/input/InputField";
 import TimePicker from "../form/time-picker";
 import TextArea from "../form/input/TextArea";
@@ -125,13 +126,21 @@ export const ModalEventForm = ({
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
+        <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs xsm:max-w-sm sm:max-w-[700px] m-4">
             <div className="no-scrollbar relative w-full max-w-[700px] max-h-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
                 <h4 className="text-2xl font-semibold mb-4">
                     {initialData ? "Edit Agenda Desa" : "Buat Agenda Desa"}
                 </h4>
 
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+                            e.preventDefault();
+                        }
+                    }}
+                >
                     <div>
                         <Label>Thumbnail</Label>
                         <input
@@ -211,7 +220,17 @@ export const ModalEventForm = ({
 
                     <div>
                         <Label>Harga Tiket</Label>
-                        <Input type="number" className="no-spinner" min={0} {...register("price", { valueAsNumber: true })} placeholder="Masukkan harga" />
+                        <Controller
+                                name="price"
+                                control={control}
+                                render={({ field }) => (
+                                    <CurrencyInput
+                                        value={field.value as number}
+                                        onChange={(val) => field.onChange(val)}
+                                        placeholder="0"
+                                    />
+                                )}
+                            />
                         {errors.price && <p className="text-sm text-red-500 mt-2">{errors.price.message}</p>}
                     </div>
 

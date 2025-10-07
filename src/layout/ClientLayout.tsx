@@ -8,7 +8,7 @@ import WhatsAppButton from "../components/common/WhatsAppButton";
 function LayoutContent() {
     return (
         <div className="flex flex-col min-h-screen">
-            <Header />
+            <Header isSolid={false} />
             <main className="flex-1 px-4 md:px-8 lg:px-16">
                 <div className="-mx-4 md:-mx-8 lg:-mx-16">
                     <Outlet />

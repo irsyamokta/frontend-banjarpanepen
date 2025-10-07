@@ -15,6 +15,7 @@ import { confirmDialog } from "../../utils/confirmationAlert";
 
 import { Sparkles } from "lucide-react";
 import { LuBuilding2, LuPencil, LuTrash2 } from "react-icons/lu";
+import { FaArrowTrendDown, FaArrowTrendUp } from "react-icons/fa6";
 
 export default function SettingsCard() {
     const { data: response = [], mutate: mutateData } = useSWR("settings", getSettings, { suspense: true });
@@ -23,6 +24,8 @@ export default function SettingsCard() {
 
     const benefitSettings = response.filter((item: ISettingPayload) => item.category === "Benefit");
     const facilitySettings = response.filter((item: ISettingPayload) => item.category === "Fasilitas");
+    const incomeSettings = response.filter((item: ISettingPayload) => item.category === "Pendapatan");
+    const expenseSettings = response.filter((item: ISettingPayload) => item.category === "Pengeluaran");
 
     const handleCreate = () => {
         setSelectedData(null);
@@ -115,6 +118,68 @@ export default function SettingsCard() {
                     <div className="mt-5 text-sm">
                         {facilitySettings.length === 0 && <p className="text-sm text-gray-500">Tidak ada data</p>}
                         {facilitySettings.map((item: ISettingPayload) => (
+                            <div>
+                                <div key={item.id} className="flex justify-between items-center">
+                                    <span>{item.name}</span>
+                                    <div className="flex">
+                                        <Button variant="link" size="ghost" onClick={() => handleEdit(item)}>
+                                            <LuPencil className="text-gray-900"/>
+                                        </Button>
+                                        <Button variant="link" size="ghost" className="text-red-500" onClick={() => handleDelete(item.id)}>
+                                            <LuTrash2 />
+                                        </Button>
+                                    </div>
+                                </div>
+                                <hr className="my-2" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Incomes */}
+                <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
+                                <FaArrowTrendUp className="text-gray-800 size-6 dark:text-white/90" />
+                            </div>
+                            <span className="text-base font-semibold text-gray-800 dark:text-white">Pendapatan</span>
+                        </div>
+                    </div>
+                    <div className="mt-5 text-sm">
+                        {incomeSettings.length === 0 && <p className="text-sm text-gray-500">Tidak ada data</p>}
+                        {incomeSettings.map((item: ISettingPayload) => (
+                            <div>
+                                <div key={item.id} className="flex justify-between items-center">
+                                    <span>{item.name}</span>
+                                    <div className="flex">
+                                        <Button variant="link" size="ghost" onClick={() => handleEdit(item)}>
+                                            <LuPencil className="text-gray-900"/>
+                                        </Button>
+                                        <Button variant="link" size="ghost" className="text-red-500" onClick={() => handleDelete(item.id)}>
+                                            <LuTrash2 />
+                                        </Button>
+                                    </div>
+                                </div>
+                                <hr className="my-2" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Expense */}
+                <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
+                                <FaArrowTrendDown className="text-gray-800 size-6 dark:text-white/90" />
+                            </div>
+                            <span className="text-base font-semibold text-gray-800 dark:text-white">Pengeluaran</span>
+                        </div>
+                    </div>
+                    <div className="mt-5 text-sm">
+                        {expenseSettings.length === 0 && <p className="text-sm text-gray-500">Tidak ada data</p>}
+                        {expenseSettings.map((item: ISettingPayload) => (
                             <div>
                                 <div key={item.id} className="flex justify-between items-center">
                                     <span>{item.name}</span>

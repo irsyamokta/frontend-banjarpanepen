@@ -1,21 +1,21 @@
 import api from "../api";
 
 export const getArticles = async () => {
-    const response = await api.get("/article/all", {
+    const response = await api.get("/articles", {
         withCredentials: true,
     });
     return response.data;
 };
 
 export const getArticleById = async (id: string) => {
-    const response = await api.get(`/article/${id}`, {
+    const response = await api.get(`/articles/${id}`, {
         withCredentials: true,
     });
     return response.data;
 };
 
 export const createArticle = async (payload: any) => {
-    const response = await api.post("/article/create", payload, {
+    const response = await api.post("/articles", payload, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
@@ -25,7 +25,7 @@ export const createArticle = async (payload: any) => {
 };
 
 export const updateArticle = async (id: string, payload: any) => {
-    const response = await api.post(`/article/update/${id}`, payload, {
+    const response = await api.post(`/articles/${id}`, payload, {
         withCredentials: true,
         params: {
             _method: "PATCH",
@@ -38,7 +38,7 @@ export const updateArticle = async (id: string, payload: any) => {
 };
 
 export const deleteArticle = async (id: string) => {
-    const response = await api.delete(`/article/delete/${id}`, {
+    const response = await api.delete(`/articles/${id}`, {
         withCredentials: true,
     });
     return response.data;

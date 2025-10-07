@@ -39,14 +39,14 @@ export default function UserInfoCard() {
               </p>
             </div>
 
-            <div>
-              <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Instagram
-              </p>
-              <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                @{user.instagram}
-              </p>
-            </div>
+            {user.role !== "visitor" && (
+              <div>
+                <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">Instagram</p>
+                <p className="text-sm font-medium text-gray-800 dark:text-white/90">
+                  @{user.instagram}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

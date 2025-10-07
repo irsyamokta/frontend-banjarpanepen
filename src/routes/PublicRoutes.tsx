@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const PublicRoute = () => {
     const {  user } = useAuth();
 
-    if (user?.role === "ADMIN") {
+    if (user?.role === "admin") {
         return <Navigate to="/admin" replace />;
     }
 

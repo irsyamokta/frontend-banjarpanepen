@@ -37,8 +37,8 @@ export default function Hero({
                     ))}
                 </p>
                 {showButton && (
-                    <Button type="button" variant="default" size="md" onClick={() => handleNavigate("#packages")}>
-                        Lihat Paket Wisata
+                    <Button type="button" variant="default" size="md" onClick={() => handleNavigate("#ticket")}>
+                        Lihat Tiket Wisata
                     </Button>
                 )}
             </div>

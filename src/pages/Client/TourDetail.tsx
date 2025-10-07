@@ -3,8 +3,6 @@ import useSWR from "swr";
 import { getTourById } from "../../services/tourService";
 import PageShell from "../../components/common/PageShell";
 import TourDetailContent from "../../components/section/tour/TourDetailContent";
-// import { Spinner } from "../../components/ui/spinner/Spinner";
-
 
 const fetcher = (id: string) => getTourById(id);
 

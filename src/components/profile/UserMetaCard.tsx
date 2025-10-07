@@ -23,7 +23,9 @@ export default function UserMetaCard() {
   const { user } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState("/src/assets/img/img-user.png");
+  const [imagePreview, setImagePreview] = useState(
+    user?.avatar || "/src/assets/img/img-user.png"
+  );
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const {
@@ -61,8 +63,11 @@ export default function UserMetaCard() {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("phone", data.phone);
-    formData.append("instagram", data.instagram);
     formData.append("email", data.email);
+    if (user?.role !== "visitor") {
+      formData.append("instagram", data.instagram);
+    }
+
     if (imageFile) {
       formData.append("file", imageFile);
     }
@@ -114,13 +119,23 @@ export default function UserMetaCard() {
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">Edit Profile</h4>
           </div>
 
-          <form className="flex flex-col" onSubmit={handleSubmit(handleSave)}>
+          <form
+            className="flex flex-col"
+            onSubmit={handleSubmit(handleSave)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+                e.preventDefault();
+              }
+            }}
+          >
             <div className="custom-scrollbar h-[450px] overflow-y-auto px-2 pb-3">
               <div className="mt-7">
-                <h5 className="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">Personal Information</h5>
+                <h5 className="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
+                  Personal Information
+                </h5>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-                  {/* Profile Picture */}
+                  {/* Foto Profile */}
                   <div className="col-span-2">
                     <Label>Foto Profile</Label>
                     <input
@@ -137,31 +152,33 @@ export default function UserMetaCard() {
                     />
                   </div>
 
-                  {/* Full Name */}
+                  {/* Nama */}
                   <div className="col-span-2">
                     <Label>Nama Lengkap</Label>
                     <Input {...register("name")} />
                     {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
                   </div>
 
-                  {/* Phone */}
+                  {/* WhatsApp */}
                   <div className="col-span-2">
                     <Label>WhatsApp</Label>
                     <Input {...register("phone")} />
                     {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
                   </div>
 
-                  {/* Instagram */}
-                  <div className="col-span-2">
-                    <Label>Instagram</Label>
-                    <Input {...register("instagram")} />
-                    {errors.instagram && <p className="text-sm text-red-500">{errors.instagram.message}</p>}
-                  </div>
+                  {/* Instagram hanya untuk non-visitor */}
+                  {user?.role !== "visitor" && (
+                    <div className="col-span-2">
+                      <Label>Instagram</Label>
+                      <Input {...register("instagram")} />
+                      {errors.instagram && <p className="text-sm text-red-500">{errors.instagram.message}</p>}
+                    </div>
+                  )}
 
-                  {/* Email Address */}
+                  {/* Email */}
                   <div className="col-span-2">
                     <Label>Email</Label>
-                    <Input {...register("email")} disabled />
+                    <Input {...register("email")} readOnly />
                     {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                   </div>
                 </div>

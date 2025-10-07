@@ -3,6 +3,9 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
+import UserImage from "../../assets/img/img-user.png";
+import { LuTicket } from "react-icons/lu";
+import { GrTransaction } from "react-icons/gr";
 
 export default function UserDropdown() {
   const [loading, setLoading] = useState(true);
@@ -56,10 +59,10 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <img src={user.image_url ? user.image_url : "/src/assets/img/image-user.png"} alt="User" />
+          <img src={user.avatar ? user.avatar : UserImage} alt="User" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">{user.name}</span>
+        <span className={`block mr-1 font-medium text-theme-sm ${user.role === "visitor" ? "hidden" : "block"}`}>{user.name}</span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
             }`}
@@ -98,7 +101,7 @@ export default function UserDropdown() {
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
-              to="/admin/profile"
+              to={user.role === "visitor" ? "/profile" : "/admin/profile"}
               className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
               <svg
@@ -119,6 +122,32 @@ export default function UserDropdown() {
               Edit profile
             </DropdownItem>
           </li>
+          {user.role === "visitor" && (
+            <>
+              <li>
+                <DropdownItem
+                  onItemClick={closeDropdown}
+                  tag="a"
+                  to="/tiket"
+                  className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5"
+                >
+                  <LuTicket size={22} className="text-gray-500"/>
+                  Tiket
+                </DropdownItem>
+              </li>
+              <li>
+                <DropdownItem
+                  onItemClick={closeDropdown}
+                  tag="a"
+                  to="/transaksi"
+                  className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5"
+                >
+                  <GrTransaction size={22} className="text-gray-500"/>
+                  Transaksi
+                </DropdownItem>
+              </li>
+            </>
+          )}
         </ul>
         <button
           onClick={() => {

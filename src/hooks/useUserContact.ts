@@ -8,7 +8,7 @@ interface ContactInfo {
 
 const fetchContact = async (): Promise<ContactInfo> => {
     const data = await getUserByContact();
-    const user = data.user?.[0];
+    const user = data;
 
     if (!user) {
         throw new Error("Contact info not found");

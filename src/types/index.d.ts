@@ -6,8 +6,8 @@ export interface ILoginPayload {
 export interface IRegisterPayload {
     name: string,
     email: string,
+    phone: string,
     password: string
-    passwordConfirmation: string,
 }
 
 export interface IUser {
@@ -15,8 +15,18 @@ export interface IUser {
     name: string,
     email: string,
     phone: string,
-    role: "ADMIN" | "USER",
+    role: string,
     imageUrl: string,
+}
+
+export interface IUserPayload {
+    id: string,
+    name: string,
+    email: string,
+    phone: string,
+    role: string,
+    password: string,
+    avatar: string,
 }
 
 export interface IAuthContextType {
@@ -81,4 +91,39 @@ export interface ISettingPayload {
     id: string,
     name: string,
     category: string,
+}
+
+export interface ITicketPayload {
+    id: string,
+    title: string,
+    price: number,
+    cover: string,
+    description: string,
+    location: string
+}
+
+export interface Transaction {
+    id: string;
+    user_id: string;
+    title: string;
+    type: "income" | "expense";
+    category: string;
+    amount: number;
+    finance_role: string;
+    transaction_date: string;
+    order_id: string | null;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Order {
+    id: string;
+    user_id: string;
+    name: string;
+    quantity: number;
+    total_price: number;
+    channel: string;
+    payment_method: string;
+    status: string;
+    order_date: string;
 }
