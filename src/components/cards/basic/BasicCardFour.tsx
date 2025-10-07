@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createOrder } from "../../../services/orderService";
+import { toast } from "react-toastify";
 import Button from "../../ui/button/Button";
 import { LuMapPin, LuMinus, LuPlus } from "react-icons/lu";
 import ImageFallback from "../../ui/images/ImageFallback";
+import { useAuth } from "../../../context/AuthContext";
 
 interface BasicCardFourProps {
+    id: string;
     cover: string;
     title: string;
     location: string;
@@ -11,6 +16,7 @@ interface BasicCardFourProps {
 }
 
 export default function BasicCardFour({
+    id,
     cover,
     title,
     location,
@@ -18,6 +24,8 @@ export default function BasicCardFour({
 }: BasicCardFourProps) {
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(false);
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     const handleIncrement = () => setQuantity((q) => q + 1);
     const handleDecrement = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
@@ -37,22 +45,23 @@ export default function BasicCardFour({
     }).format(totalPrice);
 
     const handleBuy = async () => {
+        if (!user) {
+            return navigate("/signin");
+        }
+
         setLoading(true);
         try {
             const orderData = {
-                title,
-                location,
-                price,
+                name: user.name,
                 quantity,
                 total_price: totalPrice,
+                ticket_id: id,
+                user_id: user.id,
             };
-
-            console.log("Order berhasil disiapkan:", orderData);
-
-            alert(`Order disiapkan:\n${JSON.stringify(orderData, null, 2)}`);
-        } catch (err) {
-            console.error(err);
-            alert("Gagal membuat order. Coba lagi nanti.");
+            await createOrder(orderData);
+            navigate("/transaksi");
+        } catch (err: any) {
+            toast.error(err.response.data.message || "Gagal membeli tiket.");
         } finally {
             setLoading(false);
         }
