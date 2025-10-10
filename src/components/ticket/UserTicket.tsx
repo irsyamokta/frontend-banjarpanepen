@@ -65,19 +65,20 @@ export default function TicketHistory() {
         data: ticketTransactions,
         error,
         isLoading,
-    } = useSWR<Transaction[]>("/orders/history", fetcher);
+    } = useSWR<Transaction[]>("/orders/history", fetcher, { suspense: true, revalidateOnFocus: true, revalidateOnMount: true, refreshInterval: 1000 });
 
     if (isLoading) {
         return <p className="text-center mt-10">Memuat data...</p>;
     }
 
     if (error) {
-        console.error(error);
         return (
-            <EmptyState
-                title="Terjadi Kesalahan"
-                description="Gagal memuat data tiket. Silakan coba lagi nanti."
-            />
+            <div className="px-4 lg:px-20 mb-8 overflow-x-hidden pt-28">
+                <EmptyState
+                    title="Terjadi Kesalahan"
+                    description="Gagal memuat data transaksi. Silakan coba lagi nanti."
+                />
+            </div>
         );
     }
 
@@ -129,7 +130,7 @@ export default function TicketHistory() {
                                                     <QRCodeCanvas
                                                         id={`qr-${ticket.id}`}
                                                         value={ticket.qr_code}
-                                                        size={100}
+                                                        size={130}
                                                         level="H"
                                                     />
                                                 </div>

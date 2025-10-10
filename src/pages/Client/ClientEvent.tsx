@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import Hero from "../../components/common/Hero";
 
-import heroImage from "../../assets/img/img-hero-agenda.png";
+import heroImage from "../../assets/img/img-hero-agenda.webp";
 import EventSection from "../../components/section/event/EventSection";
 
 export default function ClientEvent() {

@@ -95,13 +95,13 @@ export default function Header({ isSolid: solidProp = false }: { isSolid?: boole
                             Login
                         </Button>
                     ) : (
-                        <UserDropdown />
+                        <UserDropdown isSolid={isSolid} />
                     )}
                 </div>
 
                 {/* Mobile User & Menu */}
                 <div className="flex items-center gap-4 lg:hidden">
-                    {user && user.role == "visitor" && <UserDropdown />}
+                    {user && user.role == "visitor" && <UserDropdown isSolid={isSolid} />}
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
                         className={`text-3xl transition-colors duration-300 ${isSolid ? "text-gray-800" : "text-white"
@@ -127,7 +127,7 @@ export default function Header({ isSolid: solidProp = false }: { isSolid?: boole
                         ))}
                     </nav>
 
-                    {!user || user.role !== "visitor" && (
+                    {!user && (
                         <div className="pt-6">
                             <Button
                                 onClick={() => {

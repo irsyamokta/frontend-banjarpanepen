@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import Hero from "../../components/common/Hero";
 
-import heroImage from "../../assets/img/img-hero-wisata.png";
+import heroImage from "../../assets/img/img-hero-wisata.webp";
 import TourSection from "../../components/section/tour/TourSection";
 
 export default function ClientTour() {

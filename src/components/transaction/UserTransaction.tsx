@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useSWR from "swr";
+import { toast } from "react-toastify";
 import HeaderSection from "../cards/HeaderSectionCard";
 import EmptyState from "../../components/empty/EmptyState";
 import { formatDateTime } from "../../utils/dateFormatter";
@@ -7,7 +8,7 @@ import { formatCurrency } from "../../utils/currencyFormatter";
 import Button from "../../components/ui/button/Button";
 import Badge from "../../components/ui/badge/Badge";
 import { confirmDialog } from "../../utils/confirmationAlert";
-import { getHistoryOrders } from "../../services/orderService";
+import { getHistoryOrders, cancelOrder } from "../../services/orderService";
 
 type Transaction = {
     id: string;
@@ -22,6 +23,8 @@ type Transaction = {
         title: string;
         price: number;
     };
+    snap_token: string | null;
+    snap_token_expired_at?: string | null;
 };
 
 const fetcher = async (): Promise<Transaction[]> => {
@@ -35,22 +38,35 @@ const fetcher = async (): Promise<Transaction[]> => {
         used_at: item.used_at,
         qr_code: item.qr_code,
         ticket: item.ticket,
+        snap_token: item.snap_token,
     }));
 };
 
 export default function UserTransaction() {
-    const { data: transactions, error, isLoading } = useSWR("/transactions", fetcher);
+    const { data: transactions, error, isLoading, mutate } = useSWR("/transactions", fetcher, { revalidateOnMount: true });
     const [loadingId, setLoadingId] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!document.getElementById("midtrans-script")) {
+            const script = document.createElement("script");
+            script.id = "midtrans-script";
+            script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+            script.setAttribute("data-client-key", import.meta.env.MIDTRANS_CLIENT_KEY as string);
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    }, []);
 
     if (isLoading) return <p className="text-center mt-10">Memuat data...</p>;
 
     if (error) {
-        console.error(error);
         return (
-            <EmptyState
-                title="Terjadi Kesalahan"
-                description="Gagal memuat data transaksi. Silakan coba lagi nanti."
-            />
+            <div className="px-4 lg:px-20 mb-8 overflow-x-hidden pt-28">
+                <EmptyState
+                    title="Terjadi Kesalahan"
+                    description="Gagal memuat data transaksi. Silakan coba lagi nanti."
+                />
+            </div>
         );
     }
 
@@ -67,8 +83,36 @@ export default function UserTransaction() {
     }
 
     const handlePayNow = async (id: string) => {
-        setLoadingId(id);
-        setTimeout(() => setLoadingId(null), 1000);
+        try {
+            setLoadingId(id);
+            const selectedTrans = transactions?.find((t) => t.id === id);
+            if (!selectedTrans || !selectedTrans.snap_token) {
+                toast.error("Tiket tidak tersedia.");
+                return;
+            }
+
+            (window as any).snap.pay(selectedTrans.snap_token, {
+                onSuccess: async function () {
+                    toast.success("Pembayaran berhasil diselesaikan.");
+                    await mutate();
+                },
+                onPending: async function () {
+                    toast.info("Pembayaran sedang dalam proses.");
+                    await mutate();
+                },
+                onError: async function () {
+                    toast.error("Pembayaran gagal.");
+                    await mutate();
+                },
+                onClose: function () {
+                    setLoadingId(null);
+                },
+            });
+        } catch (error) {
+            toast.error("Gagal melakukan pembayaran.");
+        } finally {
+            setLoadingId(null);
+        }
     };
 
     const handleCancel = async (id: string) => {
@@ -79,6 +123,23 @@ export default function UserTransaction() {
             cancelButtonText: "Tidak",
         });
         if (!confirmed) return;
+
+        try {
+            setLoadingId(id);
+            await cancelOrder(id);
+            mutate();
+        } catch (error: any) {
+            toast.error(error.response.data.message || "Terjadi kesalahan.");
+        } finally {
+            setLoadingId(null);
+        }
+    };
+
+    const isExpired = (trans: Transaction) => {
+        return (
+            trans.status === "expired" ||
+            (trans.snap_token_expired_at && new Date(trans.snap_token_expired_at) < new Date())
+        );
     };
 
     return (
@@ -99,26 +160,25 @@ export default function UserTransaction() {
                                 </div>
                                 <Badge
                                     color={
-                                        trans.status === "pending"
-                                            ? "warning"
-                                            : trans.status === "paid"
-                                                ? "success"
+                                        trans.status === "paid"
+                                            ? "success"
+                                            : isExpired(trans)
+                                                ? "error"
                                                 : trans.status === "canceled"
                                                     ? "error"
-                                                    : "light"
+                                                    : "warning"
                                     }
                                     className="px-4 py-2"
                                 >
                                     {trans.status === "paid"
                                         ? "Sudah Dibayar"
-                                        : trans.status === "pending"
-                                            ? "Menunggu"
+                                        : isExpired(trans)
+                                            ? "Kedaluwarsa"
                                             : trans.status === "canceled"
                                                 ? "Dibatalkan"
-                                                : trans.status === "expired"
-                                                    ? "Kedaluwarsa"
-                                                    : "Status Tidak Dikenal"}
+                                                : "Menunggu"}
                                 </Badge>
+
                             </div>
 
                             {/* Detail Tiket */}
@@ -146,7 +206,7 @@ export default function UserTransaction() {
                             </div>
 
                             {/* Tombol Aksi */}
-                            {trans.status === "pending" && (
+                            {trans.status === "pending" && !isExpired(trans) && (
                                 <div className="flex flex-col-reverse sm:flex-row gap-4 mt-6">
                                     <Button
                                         variant="outline"

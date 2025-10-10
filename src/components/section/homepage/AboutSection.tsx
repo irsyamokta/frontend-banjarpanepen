@@ -1,4 +1,4 @@
-import aboutImage from "../../../assets/img/img-about.png";
+import aboutImage from "../../../assets/img/img-about.webp";
 
 export default function About() {
     return (
