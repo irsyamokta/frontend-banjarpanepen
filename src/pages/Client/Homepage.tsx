@@ -5,7 +5,7 @@ import Hero from "../../components/common/Hero";
 import Ticket from "../../components/section/homepage/TicketSection";
 import Gallery from "../../components/section/homepage/GallerySection";
 
-import heroImage from "../../assets/img/img-hero.png";
+import heroImage from "../../assets/img/img-hero.webp";
 
 export default function Homepage() {
     return (

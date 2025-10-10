@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import Hero from "../../components/common/Hero";
 
-import heroImage from "../../assets/img/img-hero-artikel.png";
+import heroImage from "../../assets/img/img-hero-artikel.webp";
 import ArticleSection from "../../components/section/article/ArticleSection";
 
 export default function ClientArticle() {

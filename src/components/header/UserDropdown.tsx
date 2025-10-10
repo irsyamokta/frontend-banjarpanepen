@@ -6,8 +6,9 @@ import { Dropdown } from "../ui/dropdown/Dropdown";
 import UserImage from "../../assets/img/img-user.png";
 import { LuTicket } from "react-icons/lu";
 import { GrTransaction } from "react-icons/gr";
+import { HiChevronDown } from "react-icons/hi2";
 
-export default function UserDropdown() {
+export default function UserDropdown({ isSolid }: { isSolid?: boolean }) {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -63,23 +64,11 @@ export default function UserDropdown() {
         </span>
 
         <span className={`block mr-1 font-medium text-theme-sm ${user.role === "visitor" ? "hidden" : "block"}`}>{user.name}</span>
-        <svg
-          className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-            }`}
-          width="18"
-          height="20"
-          viewBox="0 0 18 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.3125 8.65625L9 13.3437L13.6875 8.65625"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <HiChevronDown
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+            } ${isSolid ? "text-gray-500" : "text-white"}`}
+          size={20}
+        />
       </button>
 
       <Dropdown
@@ -131,7 +120,7 @@ export default function UserDropdown() {
                   to="/tiket"
                   className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5"
                 >
-                  <LuTicket size={22} className="text-gray-500"/>
+                  <LuTicket size={22} className="text-gray-500" />
                   Tiket
                 </DropdownItem>
               </li>
@@ -142,7 +131,7 @@ export default function UserDropdown() {
                   to="/transaksi"
                   className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5"
                 >
-                  <GrTransaction size={22} className="text-gray-500"/>
+                  <GrTransaction size={22} className="text-gray-500" />
                   Transaksi
                 </DropdownItem>
               </li>

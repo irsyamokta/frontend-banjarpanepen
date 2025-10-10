@@ -79,8 +79,12 @@ export default function TransactionTable({ data, perPage = 10 }: OrderTableProps
                                             ) : t.status === "paid" ? (
                                                 <Badge color="success">Dibayar</Badge>
                                             ) : (
-                                                t.status === "expired" && (
+                                                t.status === "expired" ? (
                                                     <Badge color="error">Kedaluwarsa</Badge>
+                                                ) : (
+                                                    t.status === "canceled" && (
+                                                        <Badge color="error">Dibatalkan</Badge>
+                                                    )
                                                 )
                                             )
                                         }

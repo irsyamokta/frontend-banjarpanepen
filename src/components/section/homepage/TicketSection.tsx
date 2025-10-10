@@ -24,6 +24,7 @@ export default function Ticket() {
                 {response && response.data?.slice(0, 3).map((ticket: any) => (
                     <div key={ticket.id} className="w-full md:w-[48%] lg:w-[30%] flex-shrink-0">
                         <BasicCardFour
+                            id={ticket.id}
                             cover={ticket.cover}
                             title={ticket.title}
                             location={ticket.location}

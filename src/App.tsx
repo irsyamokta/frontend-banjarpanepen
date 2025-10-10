@@ -36,6 +36,8 @@ import ClientGallery from "./pages/Client/ClientGallery";
 import TourDetailPage from "./pages/Client/TourDetail";
 import EventDetailPage from "./pages/Client/EventDetail";
 import ArticleDetailPage from "./pages/Client/ArticleDetail";
+import TicketDetail from "./pages/Client/TicketDetail";
+import TransactionDetail from "./pages/Client/TransactionDetail";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -68,9 +70,18 @@ function App() {
                 <Route path="agenda/:id" element={<EventDetailPage />} />
                 <Route path="artikel/:id" element={<ArticleDetailPage />} />
               </Route>
-              <Route element={<DropdownLayout />}>
-                <Route path="profile" element={<UserProfiles />} />
-              </Route>
+            </Route>
+
+            <Route
+              element={
+                <PrivateRoute>
+                  <DropdownLayout />
+                </PrivateRoute>
+              }
+            >
+              <Route path="profile" element={<UserProfiles />} />
+              <Route path="tiket" element={<TicketDetail />} />
+              <Route path="transaksi" element={<TransactionDetail />} />
             </Route>
 
             {/* Route Admin */}
@@ -97,7 +108,7 @@ function App() {
             </Route>
 
             {/* Route Guest */}
-            <Route path="/" element={<GuestRoute />}>
+            <Route element={<GuestRoute />}>
               <Route path="signin" element={<SignIn />} />
               <Route path="signup" element={<SignUp />} />
             </Route>

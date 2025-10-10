@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import Hero from "../../components/common/Hero";
 
-import heroImage from "../../assets/img/img-hero-galeri.png";
+import heroImage from "../../assets/img/img-hero-galeri.webp";
 import GallerySection from "../../components/section/gallery/GallerySection";
 
 export default function ClientGallery() {
