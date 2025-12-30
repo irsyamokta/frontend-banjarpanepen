@@ -91,6 +91,7 @@ export interface ISettingPayload {
     id: string,
     name: string,
     category: string,
+    type: string
 }
 
 export interface ITicketPayload {

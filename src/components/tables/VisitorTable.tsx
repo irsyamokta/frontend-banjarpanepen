@@ -8,6 +8,7 @@ import DatePicker from "../../components/form/DatePicker";
 
 interface Visitor {
     id: string;
+    name: string;
     user: {
         name: string;
     };
@@ -103,7 +104,7 @@ export default function VisitorTable({ data, perPage = 10 }: VisitorTableProps) 
                             currentData.map((item, idx) => (
                                 <TableRow key={idx} className="hover:bg-gray-300/10">
                                     <TableCell className="px-4 py-3 whitespace-nowrap text-theme-sm text-gray-600 dark:text-gray-400">
-                                        {item.user?.name || "-"}
+                                        {item.user?.name || item.name}
                                     </TableCell>
                                     <TableCell className="px-4 py-3 whitespace-nowrap text-theme-sm text-gray-600 dark:text-gray-400">
                                         {item.ticket?.title || "-"}

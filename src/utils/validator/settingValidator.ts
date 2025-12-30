@@ -10,4 +10,7 @@ export const settingSchema = z.object({
         .nonempty({ message: "Caption tidak boleh kosong!" })
         .min(3, { message: "Caption minimal harus 3 karakter!" })
         .max(50, { message: "Caption maksimal 50 karakter!" }),
+
+    type: z.string()
+        .optional(),
 });

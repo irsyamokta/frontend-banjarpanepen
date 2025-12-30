@@ -32,6 +32,7 @@ export const ModalSettingForm = ({
     onClose,
 }: ModalSettingFormProps) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     const options = [
         { value: "Benefit", label: "Benefit" },
@@ -51,6 +52,7 @@ export const ModalSettingForm = ({
         defaultValues: {
             name: "",
             category: "",
+            type: "",
         },
     });
 
@@ -59,11 +61,13 @@ export const ModalSettingForm = ({
             reset({
                 name: initialData.name,
                 category: initialData.category,
+                type: initialData.type,
             });
         } else {
             reset({
                 name: "",
                 category: "",
+                type: "",
             });
         }
     }, [initialData, reset]);
@@ -75,6 +79,7 @@ export const ModalSettingForm = ({
             const formData = new FormData();
             formData.append("name", data.name);
             formData.append("category", data.category);
+            if (data.type) formData.append("type", data.type);
 
             if (initialData) {
                 await updateSetting(initialData.id, formData);
@@ -128,10 +133,36 @@ export const ModalSettingForm = ({
                                 <Select
                                     options={options}
                                     value={field.value}
-                                    onChange={field.onChange}
+                                    onChange={(val) => {
+                                        field.onChange(val);
+                                        setSelectedCategory(val);
+                                    }}
                                 />
                             )}
                         />
+                    </div>
+
+                    <div>
+                        {(selectedCategory === "Pendapatan" || selectedCategory === "Pengeluaran") && (
+                            <div>
+                                <Label>Tipe</Label>
+                                <Controller
+                                    name="type"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Select
+                                            options={[
+                                                { value: "tourism", label: "Wisata Bukit Pengaritan" },
+                                                { value: "batik", label: "Batik Caraka" },
+                                            ]}
+                                            value={field.value ?? ""}
+                                            onChange={field.onChange}
+                                        />
+                                    )}
+                                />
+                                {errors.type && <p className="text-sm text-red-500 mt-2">{errors.type.message}</p>}
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex justify-end gap-3 mt-6">
